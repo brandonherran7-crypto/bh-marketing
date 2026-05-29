@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BH Pro Services — Marketing HQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8C96A;--black:#0A0A0A;--black-2:#111111;--black-3:#1A1A1A;--black-4:#222222;--white:#F5F0E8;--white-2:#E8E0D0;--gray:#888880;--green:#4CAF82;--blue:#5588ff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--white);font-family:'Montserrat',sans-serif;min-height:100vh;}
+.header{background:var(--black-2);border-bottom:1px solid #2a2a2a;padding:0 20px;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);letter-spacing:.05em;}
+.logo span{color:var(--white);font-weight:300;font-size:.7rem;display:block;letter-spacing:.15em;text-transform:uppercase;}
+.nav{background:var(--black-2);border-bottom:1px solid #1e1e1e;overflow-x:auto;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;padding:0 20px;}
+.nav-btn{background:none;border:none;color:var(--gray);font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 12px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-btn:hover{color:var(--white);}
+.main{max-width:900px;margin:0 auto;padding:24px 20px 80px;}
+.section{display:none;}.section.active{display:block;}
+.page-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--white);margin-bottom:4px;}
+.page-sub{color:var(--gray);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px;}
+.card{background:var(--black-3);border:1px solid #252525;border-radius:8px;padding:20px;margin-bottom:14px;}
+.card-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.card-title .num{background:var(--gold);color:var(--black);font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.checklist{list-style:none;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #1e1e1e;font-size:.8rem;color:var(--white-2);line-height:1.5;cursor:pointer;}
+.checklist li:last-child{border-bottom:none;}
+.checklist li.done{color:var(--gray);text-decoration:line-through;}
+.check-box{width:18px;height:18px;border:1.5px solid #444;border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.checklist li.done .check-box{background:var(--green);border-color:var(--green);}
+.checklist li.done .check-box::after{content:'✓';color:white;font-size:11px;font-weight:700;}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:.62rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
+.badge.pending{background:#2a2000;color:var(--gold);}
+.badge.done-b{background:#0a2a1a;color:var(--green);}
+.badge.active-b{background:#1a1a2a;color:#7a9fff;}
+.badge.red-b{background:#2a0a0a;color:#ff7a7a;}
+.section-label{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+.section-label::after{content:'';flex:1;height:1px;background:#2a2a2a;}
+.copy-box{background:var(--black-4);border:1px solid #2e2e2e;border-left:3px solid var(--gold);border-radius:6px;padding:14px 16px;font-size:.8rem;color:var(--white-2);line-height:1.7;margin:10px 0;font-style:italic;position:relative;padding-right:72px;}
+.copy-btn{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--black);border:none;border-radius:4px;padding:3px 8px;font-size:.6rem;font-weight:700;font-family:'Montserrat',sans-serif;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;}
+.tbl{width:100%;border-collapse:collapse;font-size:.78rem;}
+.tbl th{background:var(--black-4);color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.62rem;padding:10px 12px;text-align:left;border-bottom:1px solid #2a2a2a;}
+.tbl td{padding:10px 12px;border-bottom:1px solid #1a1a1a;color:var(--white-2);line-height:1.4;vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.info-box{background:#0d1a0d;border:1px solid #1e3a1e;border-radius:6px;padding:14px 16px;font-size:.78rem;color:#a0d0a0;line-height:1.6;margin:12px 0;}
+.warn-box{background:#1a1200;border:1px solid #3a2800;border-radius:6px;padding:14px 16px;font-size:.78rem;color:#d0b060;line-height:1.6;margin:12px 0;}
+.blue-box{background:#0a0f1a;border:1px solid #1e2a3a;border-radius:6px;padding:14px 16px;font-size:.78rem;color:#90b0e0;line-height:1.6;margin:12px 0;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+.stat-card{background:var(--black-3);border:1px solid #222;border-radius:8px;padding:14px;text-align:center;}
+.stat-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);}
+.stat-label{font-size:.62rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-top:2px;}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:500px){.pillars{grid-template-columns:1fr;}}
+.pillar-card{background:var(--black-3);border:1px solid #252525;border-top:3px solid var(--gold);border-radius:8px;padding:16px;}
+.pillar-card.full{grid-column:span 2;}
+@media(max-width:500px){.pillar-card.full{grid-column:span 1;}}
+.pillar-num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);opacity:.3;line-height:1;}
+.pillar-name{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--white);margin:4px 0;}
+.pillar-desc{font-size:.75rem;color:var(--gray);line-height:1.5;}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.tag{background:#1e1e1e;color:var(--gold-light);font-size:.62rem;padding:3px 8px;border-radius:20px;font-weight:500;}
+.cal-day{background:var(--black-3);border:1px solid #252525;border-radius:8px;margin-bottom:10px;overflow:hidden;}
+.cal-day-header{background:var(--black-4);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.cal-day-name{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold);}
+.cal-day-body{padding:12px 16px;}
+.cal-item{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #1e1e1e;font-size:.78rem;color:var(--white-2);line-height:1.4;align-items:flex-start;}
+.cal-item:last-child{border-bottom:none;}
+.cal-platform{background:#1e1e1e;color:var(--gold);font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;height:fit-content;margin-top:2px;flex-shrink:0;}
+.post-guide{background:var(--black-3);border:1px solid #252525;border-radius:10px;margin-bottom:16px;overflow:hidden;}
+.post-guide-header{background:var(--black-4);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.post-guide-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);}
+.post-guide-body{padding:16px 18px;}
+.step-row{display:flex;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #1e1e1e;}
+.step-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.step-icon{width:30px;height:30px;background:var(--gold);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;font-family:'Montserrat',sans-serif;}
+.step-content{flex:1;}
+.step-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.step-text{font-size:.78rem;color:var(--white-2);line-height:1.5;}
+.step-tip{font-size:.72rem;color:var(--gray);margin-top:4px;font-style:italic;}
+.ideas-grid{display:grid;gap:8px;}
+.idea-item{background:var(--black-3);border:1px solid #222;border-radius:6px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}
+.idea-num{color:var(--gold);font-size:.65rem;font-weight:700;min-width:22px;margin-top:2px;}
+.idea-text{font-size:.78rem;color:var(--white-2);line-height:1.4;}
+.idea-cat{font-size:.6rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+.ad-card{background:var(--black-3);border:1px solid #252525;border-radius:8px;padding:20px;margin-bottom:16px;}
+.ad-angle{display:inline-block;background:var(--gold);color:var(--black);font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:4px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.ad-spec{font-size:.75rem;color:var(--gray);margin-bottom:6px;}
+.ad-spec strong{color:var(--white-2);}
+.phase-header{background:linear-gradient(135deg,#1a1500,#0a0a0a);border:1px solid #3a2800;border-radius:8px;padding:16px;margin-bottom:16px;}
+.phase-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);margin-bottom:4px;}
+.phase-sub{font-size:.73rem;color:var(--gray);line-height:1.5;}
+.capcut-step{background:var(--black-3);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:10px;}
+.capcut-step-num{font-size:.62rem;font-weight:700;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.capcut-step-text{font-size:.8rem;color:var(--white-2);line-height:1.5;}
+.capcut-step-tip{font-size:.72rem;color:var(--gray);margin-top:4px;}
+.fab{position:fixed;bottom:24px;right:20px;background:var(--gold);color:var(--black);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.4);border:none;font-family:'Montserrat',sans-serif;font-weight:700;z-index:99;}
+</style>
+</head>
+<body>
+<div class="header"><div class="header-inner"><div class="logo">BH Pro Services <span>Marketing Command Center</span></div><span class="badge pending">South Florida</span></div></div>
+<div class="nav"><div class="nav-inner">
+  <button class="nav-btn active" onclick="showSection('dashboard',this)">Dashboard</button>
+  <button class="nav-btn" onclick="showSection('primeros',this)">Primeros Posts</button>
+  <button class="nav-btn" onclick="showSection('capcut',this)">CapCut</button>
+  <button class="nav-btn" onclick="showSection('calendario',this)">Calendario</button>
+  <button class="nav-btn" onclick="showSection('contenido',this)">Contenido</button>
+  <button class="nav-btn" onclick="showSection('ads',this)">Meta Ads</button>
+  <button class="nav-btn" onclick="showSection('ideas',this)">50 Ideas</button>
+  <button class="nav-btn" onclick="showSection('leads',this)">Leads</button>
+</div></div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div class="section active" id="dashboard">
+  <h1 class="page-title">Tu Plan de Acción</h1>
+  <p class="page-sub">Progreso general · BH Pro Services</p>
+  <div class="stats">
+    <div class="stat-card"><div class="stat-val" id="done-count">0</div><div class="stat-label">Completados</div></div>
+    <div class="stat-card"><div class="stat-val" id="total-count">0</div><div class="stat-label">Total pasos</div></div>
+    <div class="stat-card"><div class="stat-val" id="pct-count">0%</div><div class="stat-label">Progreso</div></div>
+  </div>
+  <div class="section-label">Fase 1 — Fundación</div>
+  <div class="card">
+    <div class="card-title"><span class="num">1</span> Google Business Profile</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Crear perfil en business.google.com</li>
+      <li onclick="toggle(this)" class="done"><span class="check-box"></span>Agregar descripción del negocio</li>
+      <li onclick="toggle(this)" class="done"><span class="check-box"></span>Enviar verificación a Google</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Subir 10 fotos al aprobarse</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Copiar link de reviews y mandarlo a 5 clientes</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Meta: 10 reseñas en primeros 30 días</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="num">2</span> Perfil de Instagram</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Actualizar username a @bhproservices</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Reescribir bio con keywords y CTA</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Logo negro/dorado como foto de perfil</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Configurar link en bio (Linktree)</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Crear 6 Highlights con portadas doradas</li>
+    </ul>
+  </div>
+  <div class="section-label">Fase 2 — Primeros contenidos</div>
+  <div class="card">
+    <div class="card-title"><span class="num">3</span> Llenar el feed — primeros 9 posts</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 1 — Foto proyecto terminado (pintura)</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 2 — Before & After en carrusel</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 3 — Detalle de acabado de cerca</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 4 — Equipo trabajando</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 5 — Proyecto de epoxy o madera</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 6 — Foto aspiracional (hotel o condo)</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 7 — Primer Reel (time-lapse o B&A)</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 8 — Post educativo simple</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Post 9 — Presentación de la empresa</li>
+    </ul>
+  </div>
+  <div class="section-label">Fase 3 — Publicidad</div>
+  <div class="card">
+    <div class="card-title"><span class="num">4</span> Meta Ads — Primera Campaña</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Crear Meta Business Suite</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Crear Ad Account en USD</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Preparar foto/video para 3 anuncios</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Crear campaña de Leads con Instant Form</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Lanzar el viernes</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Revisar resultados a los 7 días</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PRIMEROS POSTS -->
+<div class="section" id="primeros">
+  <h1 class="page-title">Primeros Posts</h1>
+  <p class="page-sub">Qué publicar, cómo grabarlo y en qué orden</p>
+  <div class="warn-box">📌 Antes de publicar necesitas mínimo 9 fotos o videos de proyectos reales. Si no tienes, el primer paso es ir a tu próximo trabajo con el teléfono y grabar todo.</div>
+  <div class="blue-box">💡 El feed de Instagram se ve como una cuadrícula 3x3. Los primeros 9 posts son tu primera impresión. Deben verse variados: mezcla resultados, proceso y equipo.</div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 1 — Foto de proyecto terminado</div><span class="badge done-b">Empezar aquí</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">📸</div><div class="step-content"><div class="step-label">Qué grabar</div><div class="step-text">Una foto de una pared, cuarto o área recién pintada. Que se vea limpia y terminada. Busca en tu galería — probablemente ya tienes algo bueno ahí.</div><div class="step-tip">💡 Si no tienes, en tu próximo trabajo toma la foto al terminar antes de recoger.</div></div></div>
+      <div class="step-row"><div class="step-icon">☀️</div><div class="step-content"><div class="step-label">Cómo tomarla bien</div><div class="step-text">Con buena luz natural. Tómala en la mañana o al atardecer — evita el mediodía que crea sombras fuertes. Aléjate para que se vea el contexto completo.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">Every detail matters. ✦<br><br>Premium painting completed for a residential property in South Florida. Clean lines, flawless finish — that's the BH Pro standard.<br><br>📩 DM us for a free estimate.<br>🔗 Link in bio.<br><br>#painting #southflorida #miami #propainting #propertyservices #bhproservices<button class="copy-btn" onclick="copyText(this,'Every detail matters. ✦\n\nPremium painting completed for a residential property in South Florida. Clean lines, flawless finish — that\'s the BH Pro standard.\n\n📩 DM us for a free estimate.\n🔗 Link in bio.\n\n#painting #southflorida #miami #propainting #propertyservices #bhproservices')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 2 — Before & After (carrusel)</div><span class="badge active-b">Alto impacto</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">📸</div><div class="step-content"><div class="step-label">Qué necesitas</div><div class="step-text">Dos fotos del mismo ángulo: una antes y una después. <strong>Regla de oro de ahora en adelante: foto al llegar a cada proyecto, foto al terminar. Siempre.</strong></div></div></div>
+      <div class="step-row"><div class="step-icon">📱</div><div class="step-content"><div class="step-label">Cómo publicarlo</div><div class="step-text">Instagram → + → Post → toca el ícono de múltiples fotos → selecciona primero el ANTES, luego el DESPUÉS. Agrega texto "Swipe →" en la primera imagen.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">Swipe to see the transformation 👉<br><br>From worn-out to premium — in just [X] days.<br><br>South Florida · BH Pro Services<br>📩 Get your free quote — DM us or link in bio.<br><br>#beforeandafter #painting #renovation #southflorida #bhproservices<button class="copy-btn" onclick="copyText(this,'Swipe to see the transformation 👉\n\nFrom worn-out to premium — in just [X] days.\n\nSouth Florida · BH Pro Services\n📩 Get your free quote — DM us or link in bio.\n\n#beforeandafter #painting #renovation #southflorida #bhproservices')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 3 — Detalle de acabado de cerca</div><span class="badge pending">Fácil y premium</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">📸</div><div class="step-content"><div class="step-label">Qué grabar</div><div class="step-text">Acércate mucho a una superficie terminada: pared pintada, madera restaurada, epoxy. Que llene todo el encuadre. Toca la pantalla para enfocar antes de tomar.</div><div class="step-tip">💡 Este tipo de foto muestra calidad y se ve muy premium con poco esfuerzo.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">The finish says it all. ✦<br><br>Flawless results on every project — no shortcuts, no compromise.<br><br>📩 DM us to schedule your free estimate.<br><br>#craftsmanship #painting #southflorida #bhproservices #premiumfinish<button class="copy-btn" onclick="copyText(this,'The finish says it all. ✦\n\nFlawless results on every project — no shortcuts, no compromise.\n\n📩 DM us to schedule your free estimate.\n\n#craftsmanship #painting #southflorida #bhproservices #premiumfinish')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 4 — Equipo trabajando</div><span class="badge active-b">Humaniza la marca</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">👷</div><div class="step-content"><div class="step-label">Qué grabar</div><div class="step-text">Foto o video corto del equipo en acción: pintando, lijando, aplicando epoxy. No tiene que ser perfecto — que se vea real. La gente confía en lo que ve.</div><div class="step-tip">💡 Que los uniformes estén limpios si es posible. Fondo ordenado.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">Behind every perfect finish — a team that takes pride in the work. 💪<br><br>At BH Pro Services, we show up on time, work clean, and don't leave until it's right.<br><br>📩 DM us to get started.<br><br>#team #southflorida #contractors #bhproservices<button class="copy-btn" onclick="copyText(this,'Behind every perfect finish — a team that takes pride in the work. 💪\n\nAt BH Pro Services, we show up on time, work clean, and don\'t leave until it\'s right.\n\n📩 DM us to get started.\n\n#team #southflorida #contractors #bhproservices')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 5 — Epoxy o madera</div><span class="badge pending">Diferenciador</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">✨</div><div class="step-content"><div class="step-label">Qué grabar</div><div class="step-text">El mejor proyecto de epoxy o madera que tengas. El epoxy es visualmente muy impactante — los reflejos y colores llaman mucho la atención en redes.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">Not your average floor. ✦<br><br>Custom metallic epoxy installed in South Florida. Built to last, designed to impress.<br><br>We specialize in epoxy flooring for residential, commercial, and hospitality properties.<br>📩 DM us for pricing and availability.<br><br>#epoxy #epoxyfloor #southflorida #bhproservices #luxuryfloors<button class="copy-btn" onclick="copyText(this,'Not your average floor. ✦\n\nCustom metallic epoxy installed in South Florida. Built to last, designed to impress.\n\nWe specialize in epoxy flooring for residential, commercial, and hospitality properties.\n📩 DM us for pricing and availability.\n\n#epoxy #epoxyfloor #southflorida #bhproservices #luxuryfloors')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="post-guide">
+    <div class="post-guide-header"><div class="post-guide-title">Post 7 — Tu primer Reel</div><span class="badge red-b">Mayor alcance</span></div>
+    <div class="post-guide-body">
+      <div class="step-row"><div class="step-icon">🎬</div><div class="step-content"><div class="step-label">La idea más fácil para empezar</div><div class="step-text">Time-lapse de un proyecto: graba clips de 5–10 seg en distintos momentos (llegando, a medio trabajo, resultado final). En CapCut los aceleras y listo. Duración final: 15–30 seg.</div><div class="step-tip">💡 No necesitas cámara profesional. El iPhone o Android normal funciona perfecto.</div></div></div>
+      <div class="step-row"><div class="step-icon">📲</div><div class="step-content"><div class="step-label">Cómo grabarlo</div><div class="step-text">4–6 clips del mismo proyecto: Clip 1 llegando al trabajo → Clip 2 superficie sin trabajar → Clip 3 equipo a mitad → Clip 4 resultado final → Clip 5 primer plano del acabado.</div></div></div>
+      <div class="step-row"><div class="step-icon">✂️</div><div class="step-content"><div class="step-label">Edición</div><div class="step-text">Ve a la pestaña CapCut para el paso a paso exacto de cómo editar este Reel.</div></div></div>
+      <div class="step-row"><div class="step-icon">✏️</div><div class="step-content"><div class="step-label">Caption listo</div></div></div>
+      <div class="copy-box">From start to finish — this is how we work. 🔨✨<br><br>Every project gets the same attention to detail, whether it's a single room or an entire building.<br><br>BH Pro Services · South Florida<br>📩 DM us for a free estimate.<br><br>#painting #renovation #timelapse #southflorida #bhproservices #reels<button class="copy-btn" onclick="copyText(this,'From start to finish — this is how we work. 🔨✨\n\nEvery project gets the same attention to detail, whether it\'s a single room or an entire building.\n\nBH Pro Services · South Florida\n📩 DM us for a free estimate.\n\n#painting #renovation #timelapse #southflorida #bhproservices #reels')">Copiar</button></div>
+    </div>
+  </div>
+
+  <div class="section-label">Primera Story — puedes hacerla hoy</div>
+  <div class="card">
+    <div class="card-title">Opciones para tu primera Story</div>
+    <div class="step-row" style="padding:8px 0;border-bottom:1px solid #1e1e1e;"><div class="step-icon">1</div><div class="step-content" style="margin-top:4px;"><div class="step-text"><strong>Más fácil:</strong> Comparte tu último post como Story — toca el avión en el post → "Add to Story".</div></div></div>
+    <div class="step-row" style="padding:8px 0;border-bottom:1px solid #1e1e1e;"><div class="step-icon">2</div><div class="step-content" style="margin-top:4px;"><div class="step-text"><strong>Más impacto:</strong> Foto del trabajo de hoy + texto "Trabajando en South Florida — pregúntanos por tu cotización 📩" + sticker de DM.</div></div></div>
+    <div class="step-row" style="padding:8px 0;"><div class="step-icon">3</div><div class="step-content" style="margin-top:4px;"><div class="step-text"><strong>Engagement:</strong> Poll "¿Cuál prefieres?" con dos fotos de proyectos distintos. Las polls generan interacción fácil.</div></div></div>
+    <div class="info-box" style="margin-top:12px;">📌 Las Stories desaparecen en 24h. No tienen que ser perfectas — deben ser reales y constantes. Una Story diaria es suficiente para empezar.</div>
+  </div>
+</div>
+
+<!-- CAPCUT -->
+<div class="section" id="capcut">
+  <h1 class="page-title">Editar en CapCut</h1>
+  <p class="page-sub">Paso a paso para hacer Reels y Stories desde el teléfono</p>
+  <div class="info-box">📱 Todo desde el teléfono en CapCut (gratis). Aquí tienes el paso a paso exacto para cada tipo de video que vas a publicar.</div>
+
+  <div class="section-label">Reel 1 — Before & After (el más fácil y viral)</div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 1 — Abrir proyecto nuevo</div><div class="capcut-step-text">Abre CapCut → toca el + grande → "New Project" → selecciona el video/foto del ANTES primero, luego el DESPUÉS.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 2 — Ajustar duración de cada clip</div><div class="capcut-step-text">Toca el clip ANTES en la línea de tiempo → arrastra los bordes → ponlo en 2–3 segundos. El clip DESPUÉS → ponlo en 4–6 segundos. El después siempre más largo.</div><div class="capcut-step-tip">💡 Toca el clip → aparecen manijas en los bordes → arrástralas para cortar.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 3 — Agregar transición entre clips</div><div class="capcut-step-text">Toca el ícono blanco cuadrado que aparece entre los dos clips → busca "Swipe" o "Flash" → duración: 0.3 segundos. Simple y efectiva.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 4 — Agregar música</div><div class="capcut-step-text">Toca "Audio" → "Sounds" → pestaña "Trending" → elige algo que pegue con el video. Baja el volumen al 50% para que no tape el contenido visual.</div><div class="capcut-step-tip">💡 Usar canciones trending en CapCut aumenta el alcance del Reel en Instagram.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 5 — Agregar texto BEFORE / AFTER</div><div class="capcut-step-text">Toca "Text" → escribe "BEFORE" → colócalo sobre el primer clip → ajusta que solo aparezca durante esos segundos. Repite con "AFTER ✦" sobre el segundo clip. Color: blanco con fondo oscuro semitransparente.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 6 — Formato vertical y exportar</div><div class="capcut-step-text">Si tus fotos son horizontales: toca el ícono de relación de aspecto → selecciona 9:16. Esto pone tu foto sobre fondo negro que se ve bien. Luego exportar → 1080p → 30fps → guardar.</div><div class="capcut-step-tip">💡 El 9:16 vertical es el formato correcto para Reels de Instagram.</div></div>
+
+  <div class="section-label">Reel 2 — Time-lapse de proyecto</div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 1 — Importar clips en orden</div><div class="capcut-step-text">Agrega todos los clips del proyecto en secuencia: llegada → área sin trabajar → proceso → resultado terminado → detalle final. Mínimo 4 clips.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 2 — Acelerar los clips del proceso</div><div class="capcut-step-text">Selecciona cada clip del proceso (no el final) → toca "Speed" → "Normal" → ponlo en 3x o 4x. Esto crea el efecto time-lapse sin necesidad de grabar en modo especial.</div><div class="capcut-step-tip">💡 El clip de llegada y el resultado final déjalos a velocidad normal (1x) para que se vean claros.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 3 — Hook de texto al inicio (MUY IMPORTANTE)</div><div class="capcut-step-text">Agrega texto solo sobre el primer segundo: "2 days of work in 30 seconds ⬇️" o "Watch this transformation". Este texto detiene el scroll y hace que la gente vea el video completo.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 4 — CTA al final</div><div class="capcut-step-text">Últimos 2 segundos del video: texto "📩 DM us for a free quote" + "BH Pro Services · South Florida". Fondo negro semitransparente debajo del texto.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Paso 5 — Música energética</div><div class="capcut-step-text">Para time-lapse funciona música más movida. En CapCut busca: "upbeat" o "hip hop work". Que tenga beat marcado que acompañe el ritmo del video.</div></div>
+
+  <div class="section-label">Reel 3 — Video hablando a cámara (educativo)</div>
+  <div class="capcut-step"><div class="capcut-step-num">Formato: Tú explicando algo útil</div><div class="capcut-step-text">Grábate de frente con buena luz (frente a una ventana). Di algo corto y útil: "3 señales de que tu propiedad necesita repintarse" — un punto por clip de 3–4 segundos cada uno.</div><div class="capcut-step-tip">💡 No necesitas ser perfecto. Natural y directo funciona mejor que muy producido.</div></div>
+  <div class="capcut-step"><div class="capcut-step-num">Función estrella — Auto Captions</div><div class="capcut-step-text">Después de grabar: toca "Text" → "Auto Captions" → selecciona idioma (English o Spanish) → CapCut transcribe tu voz automáticamente y agrega subtítulos. Esto aumenta MUCHO el alcance porque la gente ve sin sonido.</div><div class="capcut-step-tip">💡 Esta función sola hace que tus videos se vean más profesionales al instante.</div></div>
+
+  <div class="section-label">Stories rápidas — 2 minutos</div>
+  <div class="card">
+    <div class="card-title">Opciones de Stories sin complicarte</div>
+    <table class="tbl">
+      <tr><th>Tipo de Story</th><th>Cómo hacerla</th><th>Tiempo</th></tr>
+      <tr><td>Foto de proyecto</td><td>Abre Instagram → Story → sube foto → agrega texto y sticker de DM → publicar</td><td>1 min</td></tr>
+      <tr><td>Compartir post</td><td>En cualquier post tuyo → toca avión → "Add to your story"</td><td>30 seg</td></tr>
+      <tr><td>Video corto WIP</td><td>Graba 5–10 seg del trabajo → Story de Instagram directo → texto encima</td><td>1 min</td></tr>
+      <tr><td>Poll de engagement</td><td>Story → sticker Poll → "¿Cuál acabado prefieres?" → dos opciones con fotos</td><td>2 min</td></tr>
+      <tr><td>Texto motivacional</td><td>CapCut → fondo negro → texto dorado → logo pequeño → exportar → subir a Story</td><td>3 min</td></tr>
+    </table>
+    <div class="info-box" style="margin-top:12px;">📌 Para Stories simples no necesitas CapCut. Instagram tiene todas las herramientas integradas: texto, música, stickers, polls, links.</div>
+  </div>
+
+  <div class="section-label">Configuración de CapCut</div>
+  <div class="card">
+    <div class="card-title">Settings que debes tener siempre</div>
+    <table class="tbl">
+      <tr><th>Configuración</th><th>Valor</th></tr>
+      <tr><td>Formato para Reels</td><td>9:16 vertical (1080x1920)</td></tr>
+      <tr><td>Formato para posts cuadrados</td><td>1:1 (1080x1080)</td></tr>
+      <tr><td>Calidad de exportación</td><td>1080p · 30fps</td></tr>
+      <tr><td>Fuente de texto branding</td><td>Canela, Cormorant o cualquier serif elegante</td></tr>
+      <tr><td>Color texto principal</td><td>Blanco #FFFFFF o Dorado #C9A84C</td></tr>
+      <tr><td>Volumen de música</td><td>40–60% para que no tape el contenido</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- CALENDARIO -->
+<div class="section" id="calendario">
+  <h1 class="page-title">Calendario Semanal</h1>
+  <p class="page-sub">Qué publicar cada día · Sistema para principiantes</p>
+
+  <div class="phase-header">
+    <div class="phase-title">Semana 1 — Llenar el feed</div>
+    <div class="phase-sub">Objetivo: publicar los primeros 9 posts y que el perfil se vea activo y profesional. Un post por día es suficiente para empezar.</div>
+  </div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Lunes</div><span class="badge done-b">Arrancar</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">IG POST</span><div><strong>Post 1:</strong> Foto de proyecto terminado. Publica entre 7–9am o 6–8pm.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Comparte el post como Story. Toca avión en el post → "Add to your story".</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Martes</div><span class="badge active-b">Grabar</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Foto o video de 5 seg del trabajo de hoy. Texto: "En proyecto hoy — [ciudad]".</div></div>
+    <div class="cal-item"><span class="cal-platform">GRABAR</span><div>🎬 Hoy graba clips para tu primer Reel: llegada → proceso → resultado. 4–6 clips de 10 seg cada uno.</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Miércoles</div><span class="badge active-b">Contenido</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">IG POST</span><div><strong>Post 2:</strong> Before & After en carrusel. Publica a las 7am o 7pm.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Poll: "¿Cuál prefieres?" con dos fotos de proyectos distintos.</div></div>
+    <div class="cal-item"><span class="cal-platform">LINKEDIN</span><div>Mismo Before & After con caption más formal para property managers.</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Jueves</div><span class="badge active-b">Editar</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">EDITAR</span><div>✂️ Edita en CapCut el Reel que grabaste el martes. Ve a la pestaña CapCut para el paso a paso.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Behind the scenes: el equipo preparando materiales o llegando a un proyecto.</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Viernes</div><span class="badge red-b">🚀 Reel + Ads</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">REEL</span><div><strong>Post 7:</strong> Publica tu primer Reel. Viernes a las 9am tiene mucho tráfico.</div></div>
+    <div class="cal-item"><span class="cal-platform">META AD</span><div>🚀 Lanzar primera campaña de Meta Ads.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>"Viernes de transformación" — foto del mejor resultado de la semana.</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Sábado</div><span class="badge pending">Marca</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">IG POST</span><div><strong>Post 3 o 4:</strong> Detalle de acabado o equipo trabajando.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Algo casual: el equipo, el proyecto, algo humano y real.</div></div>
+  </div></div>
+
+  <div class="cal-day"><div class="cal-day-header"><div class="cal-day-name">Domingo</div><span class="badge done-b">Planificar</span></div><div class="cal-day-body">
+    <div class="cal-item"><span class="cal-platform">PLAN</span><div>10 min: revisa qué post tuvo más likes. Planifica qué grabar la semana que viene. Responde DMs pendientes.</div></div>
+    <div class="cal-item"><span class="cal-platform">STORY</span><div>Opcional: "Esta semana trabajamos en..." — preview de proyectos activos.</div></div>
+  </div></div>
+
+  <div class="phase-header" style="margin-top:24px;">
+    <div class="phase-title">Semana 2+ — Ritmo constante</div>
+    <div class="phase-sub">Una vez con 9 posts publicados, mantén: 3–4 posts por semana, 1 Reel mínimo, Stories todos los días.</div>
+  </div>
+  <div class="info-box">📌 <strong>Regla de los 3:</strong> cada semana necesitas (1) un resultado terminado, (2) algo del proceso/equipo, y (3) un Reel. Con eso tienes una semana completa.</div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="section" id="contenido">
+  <h1 class="page-title">Estrategia de Contenido</h1>
+  <p class="page-sub">5 Pilares · Hooks · Hashtags</p>
+  <div class="section-label">Los 5 Pilares</div>
+  <div class="pillars">
+    <div class="pillar-card"><div class="pillar-num">01</div><div class="pillar-name">Showcase & Portfolio</div><div class="pillar-desc">Proyectos terminados, before/after, detalles. El cliente compra con los ojos.</div><div class="pillar-tags"><span class="tag">Before/After</span><span class="tag">Portfolio</span></div></div>
+    <div class="pillar-card"><div class="pillar-num">02</div><div class="pillar-name">Process & Craftsmanship</div><div class="pillar-desc">Work in progress, equipo trabajando, técnicas. Genera confianza.</div><div class="pillar-tags"><span class="tag">WIP</span><span class="tag">Team</span></div></div>
+    <div class="pillar-card"><div class="pillar-num">03</div><div class="pillar-name">Education & Authority</div><div class="pillar-desc">Tips, errores comunes, cuándo repintar. Te posiciona como experto.</div><div class="pillar-tags"><span class="tag">Tips</span><span class="tag">Authority</span></div></div>
+    <div class="pillar-card"><div class="pillar-num">04</div><div class="pillar-name">Social Proof & Trust</div><div class="pillar-desc">Reviews, testimonios, clientes satisfechos. Construye credibilidad.</div><div class="pillar-tags"><span class="tag">Reviews</span><span class="tag">Trust</span></div></div>
+    <div class="pillar-card full"><div class="pillar-num">05</div><div class="pillar-name">Behind the Scenes & Brand</div><div class="pillar-desc">El equipo, la cultura, valores. Humaniza la marca y genera conexión.</div><div class="pillar-tags"><span class="tag">Team</span><span class="tag">Brand story</span></div></div>
+  </div>
+  <div class="section-label">Captions listos para copiar</div>
+  <div class="card">
+    <div class="card-title">Hook de autoridad</div>
+    <div class="copy-box">Most property managers settle for average. Our clients don't.<br>Premium painting & restoration across South Florida.<br>If your property deserves better — you know where to find us.<br>📩 Link in bio · Free quote in 24 hrs.<button class="copy-btn" onclick="copyText(this,'Most property managers settle for average. Our clients don\'t.\nPremium painting & restoration across South Florida.\nIf your property deserves better — you know where to find us.\n📩 Link in bio · Free quote in 24 hrs.')">Copiar</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Hook educativo</div>
+    <div class="copy-box">3 signs your property needs repainting NOW 👇<br>1. Peeling or bubbling near edges<br>2. Fading color after 5+ years<br>3. Moisture stains on walls<br>Ignore these and the repair bill doubles. 📩 DM us today.<button class="copy-btn" onclick="copyText(this,'3 signs your property needs repainting NOW 👇\n1. Peeling or bubbling near edges\n2. Fading color after 5+ years\n3. Moisture stains on walls\nIgnore these and the repair bill doubles. 📩 DM us today.')">Copiar</button></div>
+  </div>
+  <div class="section-label">Hashtags</div>
+  <div class="card">
+    <div class="card-title">Set para posts de pintura</div>
+    <div class="copy-box">#painting #propainting #southflorida #miami #fortlauderdale #propertymanagement #contractor #bhproservices #housepainting #commercialpainting #paintingcontractor #floridacontractor<button class="copy-btn" onclick="copyText(this,'#painting #propainting #southflorida #miami #fortlauderdale #propertymanagement #contractor #bhproservices #housepainting #commercialpainting #paintingcontractor #floridacontractor')">Copiar</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Set para posts de epoxy</div>
+    <div class="copy-box">#epoxy #epoxyfloor #epoxycoating #metallichepoxy #southflorida #flooringcontractor #luxuryfloors #bhproservices #concretecoating #floridafloors #epoxyart<button class="copy-btn" onclick="copyText(this,'#epoxy #epoxyfloor #epoxycoating #metallichepoxy #southflorida #flooringcontractor #luxuryfloors #bhproservices #concretecoating #floridafloors #epoxyart')">Copiar</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Set para Reels</div>
+    <div class="copy-box">#reels #beforeandafter #transformation #renovation #contractor #southflorida #bhproservices #satisfying #workhard #craftsman #propertyservices<button class="copy-btn" onclick="copyText(this,'#reels #beforeandafter #transformation #renovation #contractor #southflorida #bhproservices #satisfying #workhard #craftsman #propertyservices')">Copiar</button></div>
+  </div>
+</div>
+
+<!-- META ADS -->
+<div class="section" id="ads">
+  <h1 class="page-title">Meta Ads — Primera Campaña</h1>
+  <p class="page-sub">Setup completo · 3 anuncios · Lanzar viernes</p>
+  <div class="warn-box">⚠️ Antes de crear la campaña necesitas: Meta Business Suite, Ad Account creado, Facebook e Instagram conectados, y al menos 1 foto/video por anuncio.</div>
+  <div class="section-label">Setup</div>
+  <div class="card">
+    <div class="card-title"><span class="num">1</span> Meta Business Suite</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Ve a business.facebook.com</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Create Account · Nombre: BH Pro Services</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Conecta página de Facebook</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Conecta cuenta de Instagram</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="num">2</span> Ad Account</div>
+    <ul class="checklist">
+      <li onclick="toggle(this)"><span class="check-box"></span>Business Suite → Settings → Ad Accounts → Add</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Moneda: USD · País: United States</li>
+      <li onclick="toggle(this)"><span class="check-box"></span>Agregar método de pago</li>
+    </ul>
+  </div>
+  <div class="section-label">3 Anuncios para lanzar</div>
+  <div class="info-box">💡 1 campaña · 3 ad sets · $15–20/día total · 7 días de prueba · Objetivo: Lead Generation con Instant Form.</div>
+  <div class="ad-card">
+    <div class="ad-angle">Anuncio 1 — Transformación</div>
+    <div class="ad-spec"><strong>Formato:</strong> Carrusel Before/After o video 15 seg</div>
+    <div class="ad-spec"><strong>Audiencia:</strong> Property Managers, HOA · Miami-Dade + Broward + Palm Beach · 35–65 años</div>
+    <div class="copy-box">See What We Did to This Miami Property 👇<br><br>Before: damaged walls, peeling paint, outdated finish.<br>After: premium results — on time, on budget.<br><br>BH Pro Services | South Florida's premium painting & restoration.<br>📩 Get your free estimate today — link below.<button class="copy-btn" onclick="copyText(this,'See What We Did to This Miami Property 👇\n\nBefore: damaged walls, peeling paint, outdated finish.\nAfter: premium results — on time, on budget.\n\nBH Pro Services | South Florida\'s premium painting & restoration.\n📩 Get your free estimate today — link below.')">Copiar</button></div>
+  </div>
+  <div class="ad-card">
+    <div class="ad-angle">Anuncio 2 — Autoridad</div>
+    <div class="ad-spec"><strong>Formato:</strong> Foto premium de proyecto terminado</div>
+    <div class="ad-spec"><strong>Audiencia:</strong> General Contractors, Hotel Managers · Miami · 30–60 años</div>
+    <div class="copy-box">Your property deserves more than average. ✦<br><br>We specialize in premium painting, wood restoration, and epoxy flooring for hotels, luxury condos, and commercial properties across South Florida.<br><br>Licensed · Insured · 100% satisfaction guaranteed.<br>📩 Request your free estimate — no obligation.<button class="copy-btn" onclick="copyText(this,'Your property deserves more than average. ✦\n\nWe specialize in premium painting, wood restoration, and epoxy flooring for hotels, luxury condos, and commercial properties across South Florida.\n\nLicensed · Insured · 100% satisfaction guaranteed.\n📩 Request your free estimate — no obligation.')">Copiar</button></div>
+  </div>
+  <div class="ad-card">
+    <div class="ad-angle">Anuncio 3 — Pain Point</div>
+    <div class="ad-spec"><strong>Formato:</strong> Video 15–30 seg o imagen con texto</div>
+    <div class="ad-spec"><strong>Audiencia:</strong> Retargeting visitantes al perfil + lookalike</div>
+    <div class="copy-box">Tired of contractors who disappear mid-project? 🚫<br><br>Late arrivals. Messy work. Zero communication.<br><br>At BH Pro Services, we show up on time, every time.<br>📩 DM us or click below for a free quote.<button class="copy-btn" onclick="copyText(this,'Tired of contractors who disappear mid-project? 🚫\n\nLate arrivals. Messy work. Zero communication.\n\nAt BH Pro Services, we show up on time, every time.\n📩 DM us or click below for a free quote.')">Copiar</button></div>
+  </div>
+  <div class="section-label">Instant Form</div>
+  <div class="card">
+    <div class="card-title">Campos del formulario de leads</div>
+    <table class="tbl">
+      <tr><th>Campo</th><th>Por qué</th></tr>
+      <tr><td>Full Name</td><td>Identificar el lead</td></tr>
+      <tr><td>Phone Number</td><td>WhatsApp directo</td></tr>
+      <tr><td>Email</td><td>Seguimiento</td></tr>
+      <tr><td>Type of property</td><td>Hotel / Condo / HOA / Residential</td></tr>
+      <tr><td>Service needed</td><td>Painting / Epoxy / Wood / Maintenance</td></tr>
+      <tr><td>ZIP Code</td><td>Confirmar South Florida</td></tr>
+    </table>
+  </div>
+  <div class="section-label">Métricas a los 7 días</div>
+  <div class="card">
+    <div class="card-title">Qué revisar</div>
+    <table class="tbl">
+      <tr><th>Métrica</th><th>Meta</th><th>Si no se logra</th></tr>
+      <tr><td>CPL (costo por lead)</td><td>Menos de $15</td><td>Cambiar imagen o copy</td></tr>
+      <tr><td>CTR</td><td>Más de 1.5%</td><td>Cambiar headline</td></tr>
+      <tr><td>Leads totales</td><td>10+ en 7 días</td><td>Ampliar audiencia</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 50 IDEAS -->
+<div class="section" id="ideas">
+  <h1 class="page-title">50 Ideas de Contenido</h1>
+  <p class="page-sub">Para Instagram, Reels y LinkedIn</p>
+  <div class="section-label">Portfolio & Showcase</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">01</div><div><div class="idea-text">Before & After de pintura exterior de edificio residencial</div><div class="idea-cat">Reel · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">02</div><div><div class="idea-text">Transformación de lobby de hotel en Miami</div><div class="idea-cat">Reel · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">03</div><div><div class="idea-text">Epoxy floor en garage de luxury condo</div><div class="idea-cat">Post · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">04</div><div><div class="idea-text">Restauración de madera en terraza exterior de hotel</div><div class="idea-cat">Reel · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">05</div><div><div class="idea-text">Proyecto completo en time-lapse</div><div class="idea-cat">Reel · Viral</div></div></div>
+    <div class="idea-item"><div class="idea-num">06</div><div><div class="idea-text">Primer plano satisfying de acabado perfecto</div><div class="idea-cat">Reel · ASMR visual</div></div></div>
+    <div class="idea-item"><div class="idea-num">07</div><div><div class="idea-text">Collage de mejores proyectos del mes</div><div class="idea-cat">Post · Carousel</div></div></div>
+    <div class="idea-item"><div class="idea-num">08</div><div><div class="idea-text">Proyecto en HOA de Broward — exterior completo</div><div class="idea-cat">Post · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">09</div><div><div class="idea-text">Epoxy metallic antes y después</div><div class="idea-cat">Reel · Portfolio</div></div></div>
+    <div class="idea-item"><div class="idea-num">10</div><div><div class="idea-text">Los 5 proyectos más grandes de BH Pro este año</div><div class="idea-cat">Post · Brand</div></div></div>
+  </div>
+  <div class="section-label">Proceso & Craftsmanship</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">11</div><div><div class="idea-text">Cómo preparamos una superficie antes de pintar</div><div class="idea-cat">Reel · Educativo</div></div></div>
+    <div class="idea-item"><div class="idea-num">12</div><div><div class="idea-text">El equipo llegando temprano a un proyecto de hotel</div><div class="idea-cat">Story · Behind scenes</div></div></div>
+    <div class="idea-item"><div class="idea-num">13</div><div><div class="idea-text">Aplicación de epoxy metallic de cerca</div><div class="idea-cat">Reel · Satisfying</div></div></div>
+    <div class="idea-item"><div class="idea-num">14</div><div><div class="idea-text">Lijado y restauración de madera en deck exterior</div><div class="idea-cat">Reel · Proceso</div></div></div>
+    <div class="idea-item"><div class="idea-num">15</div><div><div class="idea-text">Día completo condensado en 30 segundos</div><div class="idea-cat">Reel · Time-lapse</div></div></div>
+    <div class="idea-item"><div class="idea-num">16</div><div><div class="idea-text">Cómo mezclamos colores personalizados</div><div class="idea-cat">Story · Proceso</div></div></div>
+    <div class="idea-item"><div class="idea-num">17</div><div><div class="idea-text">Protección de muebles antes de pintar</div><div class="idea-cat">Story · Trust</div></div></div>
+    <div class="idea-item"><div class="idea-num">18</div><div><div class="idea-text">Herramientas profesionales vs amateur</div><div class="idea-cat">Post · Autoridad</div></div></div>
+  </div>
+  <div class="section-label">Educación & Autoridad</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">19</div><div><div class="idea-text">3 señales de que tu propiedad necesita repintarse YA</div><div class="idea-cat">Post · Educativo</div></div></div>
+    <div class="idea-item"><div class="idea-num">20</div><div><div class="idea-text">¿Cada cuánto tiempo repintar en Florida?</div><div class="idea-cat">Carousel · SEO</div></div></div>
+    <div class="idea-item"><div class="idea-num">21</div><div><div class="idea-text">Diferencia entre pintura interior y exterior</div><div class="idea-cat">Reel · Educativo</div></div></div>
+    <div class="idea-item"><div class="idea-num">22</div><div><div class="idea-text">Por qué el epoxy vale más que cerámico</div><div class="idea-cat">Post · Comparativo</div></div></div>
+    <div class="idea-item"><div class="idea-num">23</div><div><div class="idea-text">Cómo saber si tu contratista hace mal trabajo</div><div class="idea-cat">Reel · Viral</div></div></div>
+    <div class="idea-item"><div class="idea-num">24</div><div><div class="idea-text">5 errores de HOAs al contratar pintura</div><div class="idea-cat">LinkedIn · Autoridad</div></div></div>
+    <div class="idea-item"><div class="idea-num">25</div><div><div class="idea-text">¿Qué incluye una cotización profesional?</div><div class="idea-cat">Carousel · Trust</div></div></div>
+    <div class="idea-item"><div class="idea-num">26</div><div><div class="idea-text">Impacto del clima de Florida en pintura exterior</div><div class="idea-cat">Post · Educativo</div></div></div>
+    <div class="idea-item"><div class="idea-num">27</div><div><div class="idea-text">Mantenimiento preventivo vs reparación emergencia</div><div class="idea-cat">LinkedIn · Valor</div></div></div>
+    <div class="idea-item"><div class="idea-num">28</div><div><div class="idea-text">Tipos de epoxy: metallic, solid, flake — cuál elegir</div><div class="idea-cat">Carousel · Educativo</div></div></div>
+  </div>
+  <div class="section-label">Social Proof & Confianza</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">29</div><div><div class="idea-text">Captura de mensaje de cliente satisfecho</div><div class="idea-cat">Story · Trust</div></div></div>
+    <div class="idea-item"><div class="idea-num">30</div><div><div class="idea-text">Review de Google con foto del proyecto</div><div class="idea-cat">Post · Social proof</div></div></div>
+    <div class="idea-item"><div class="idea-num">31</div><div><div class="idea-text">"Así nos contrató [tipo de cliente]" — historia real</div><div class="idea-cat">Post · Storytelling</div></div></div>
+    <div class="idea-item"><div class="idea-num">32</div><div><div class="idea-text">Video corto de cliente mostrando resultado</div><div class="idea-cat">Reel · Testimonio</div></div></div>
+    <div class="idea-item"><div class="idea-num">33</div><div><div class="idea-text">Cliente que nos llamó por segunda vez</div><div class="idea-cat">Post · Lealtad</div></div></div>
+    <div class="idea-item"><div class="idea-num">34</div><div><div class="idea-text">Collage de Google reviews</div><div class="idea-cat">Post · Trust</div></div></div>
+  </div>
+  <div class="section-label">Brand & Behind the Scenes</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">35</div><div><div class="idea-text">Presentación del equipo de BH Pro Services</div><div class="idea-cat">Post · Brand</div></div></div>
+    <div class="idea-item"><div class="idea-num">36</div><div><div class="idea-text">Un día en la vida de BH Pro</div><div class="idea-cat">Reel · Brand</div></div></div>
+    <div class="idea-item"><div class="idea-num">37</div><div><div class="idea-text">Cómo preparamos el van/equipo cada mañana</div><div class="idea-cat">Story · Behind scenes</div></div></div>
+    <div class="idea-item"><div class="idea-num">38</div><div><div class="idea-text">¿Por qué fundamos BH Pro? — historia</div><div class="idea-cat">Post · Brand story</div></div></div>
+    <div class="idea-item"><div class="idea-num">39</div><div><div class="idea-text">El equipo celebrando proyecto entregado a tiempo</div><div class="idea-cat">Story · Cultura</div></div></div>
+    <div class="idea-item"><div class="idea-num">40</div><div><div class="idea-text">Valores de BH Pro: puntualidad, calidad, comunicación</div><div class="idea-cat">Post · Branding</div></div></div>
+  </div>
+  <div class="section-label">Lead Generation</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">41</div><div><div class="idea-text">"¿Cuánto cuesta pintar un edificio en Miami?"</div><div class="idea-cat">Reel · Lead magnet</div></div></div>
+    <div class="idea-item"><div class="idea-num">42</div><div><div class="idea-text">Checklist: "10 cosas a revisar antes de contratar pintor"</div><div class="idea-cat">Carousel · Lead magnet</div></div></div>
+    <div class="idea-item"><div class="idea-num">43</div><div><div class="idea-text">Story con botón "Cotiza ahora" + foto reciente</div><div class="idea-cat">Story · CTA</div></div></div>
+    <div class="idea-item"><div class="idea-num">44</div><div><div class="idea-text">"Disponibilidad esta semana en [ciudad]"</div><div class="idea-cat">Story · Urgencia</div></div></div>
+    <div class="idea-item"><div class="idea-num">45</div><div><div class="idea-text">Post con precio de servicio base + CTA cotización</div><div class="idea-cat">Post · Conversión</div></div></div>
+    <div class="idea-item"><div class="idea-num">46</div><div><div class="idea-text">"¿Gestionas propiedades en South Florida?"</div><div class="idea-cat">LinkedIn · Prospecting</div></div></div>
+  </div>
+  <div class="section-label">Estacional & Local</div>
+  <div class="ideas-grid">
+    <div class="idea-item"><div class="idea-num">47</div><div><div class="idea-text">Preparar propiedad para temporada de huracanes</div><div class="idea-cat">Post · Estacional</div></div></div>
+    <div class="idea-item"><div class="idea-num">48</div><div><div class="idea-text">Proyectos completados esta semana en [ciudad]</div><div class="idea-cat">Story · Local SEO</div></div></div>
+    <div class="idea-item"><div class="idea-num">49</div><div><div class="idea-text">Tendencias de colores para propiedades en FL 2025</div><div class="idea-cat">Carousel · Tendencia</div></div></div>
+    <div class="idea-item"><div class="idea-num">50</div><div><div class="idea-text">Colaboración con property manager — tag mutuo</div><div class="idea-cat">Post · Networking</div></div></div>
+  </div>
+</div>
+
+<!-- LEADS -->
+<div class="section" id="leads">
+  <h1 class="page-title">Generación de Leads</h1>
+  <p class="page-sub">DMs · Follow-up · Reviews · Engagement</p>
+  <div class="warn-box">⏱️ Responde todo lead en menos de 60 minutos. Un lead que espera 3 horas ya habló con tu competencia.</div>
+  <div class="section-label">Plantillas de mensajes</div>
+  <div class="card">
+    <div class="card-title">Respuesta a DMs</div>
+    <div class="copy-box">Hi [Name]! Thanks for reaching out to BH Pro Services. 🙌<br><br>We'd love to help with your project. To get you an accurate quote, could you share:<br>1. Type of property (residential / commercial / hotel)<br>2. Service needed (painting / epoxy / wood / maintenance)<br>3. Location in South Florida<br><br>We typically respond with a quote within 24 hours. Talk soon!<button class="copy-btn" onclick="copyText(this,'Hi [Name]! Thanks for reaching out to BH Pro Services. 🙌\n\nWe\'d love to help with your project. To get you an accurate quote:\n1. Type of property\n2. Service needed\n3. Location in South Florida\n\nWe respond within 24 hours. Talk soon!')">Copiar</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Follow-up a las 48 horas</div>
+    <div class="copy-box">Hi [Name], just following up on your inquiry! 👋<br><br>We still have availability in South Florida this month. Let us know if you'd like a free on-site estimate — no obligation.<br><br>📞 Call/text: [TU NÚMERO]<button class="copy-btn" onclick="copyText(this,'Hi [Name], just following up on your inquiry! 👋\n\nWe still have availability in South Florida this month. Let us know if you\'d like a free on-site estimate — no obligation.\n\n📞 Call/text: [TU NÚMERO]')">Copiar</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Pedir Google Review</div>
+    <div class="copy-box">Hi [Name]! It was a pleasure working on your project. 🙏<br><br>If you have 2 minutes, a Google review would mean the world to us.<br><br>Direct link: [TU LINK DE GOOGLE]<br><br>Thank you! — BH Pro Services<button class="copy-btn" onclick="copyText(this,'Hi [Name]! It was a pleasure working on your project. 🙏\n\nIf you have 2 minutes, a Google review would mean the world to us.\n\nDirect link: [TU LINK DE GOOGLE]\n\nThank you! — BH Pro Services')">Copiar</button></div>
+  </div>
+  <div class="section-label">Engagement orgánico</div>
+  <div class="card">
+    <div class="card-title">A quién seguir y qué comentar</div>
+    <table class="tbl">
+      <tr><th>Tipo de cuenta</th><th>Comentario ejemplo</th></tr>
+      <tr><td>Property managers FL</td><td>"Beautiful property! We work with HOAs across South FL — feel free to reach out."</td></tr>
+      <tr><td>General contractors</td><td>"Great project! We handle painting and finishing when you're ready."</td></tr>
+      <tr><td>Hotels Miami / Ft. Lauderdale</td><td>"Love the renovation — we specialize in hotel painting in FL."</td></tr>
+      <tr><td>Real estate agents lujo</td><td>"Fresh paint before listing adds real value. Happy to help!"</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<button class="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+function showSection(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateStats();
+}
+function toggle(el){el.classList.toggle('done');updateStats();}
+function updateStats(){
+  const all=document.querySelectorAll('.checklist li');
+  const done=document.querySelectorAll('.checklist li.done');
+  const pct=all.length?Math.round(done.length/all.length*100):0;
+  document.getElementById('done-count').textContent=done.length;
+  document.getElementById('total-count').textContent=all.length;
+  document.getElementById('pct-count').textContent=pct+'%';
+}
+function copyText(btn,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✓ Listo';
+    setTimeout(()=>btn.textContent='Copiar',2000);
+  });
+}
+updateStats();
+</script>
+</body>
+</html>
