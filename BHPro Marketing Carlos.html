@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BH Pro Services — Sistema de Marketing · Carlos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B3A6B;--navy-dark:#0f2347;--gold:#C9A84C;
+  --cream:#F5F0E8;--cream2:#EDE5D4;--white:#fff;
+  --green:#2ECC71;--red:#E74C3C;--orange:#F39C12;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:#0f1923;color:#fff;overflow-x:hidden;}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:var(--gold);padding:10px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-l{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--navy-dark);font-weight:700;}
+.topbar-r{font-size:9px;letter-spacing:3px;color:var(--navy-dark);font-weight:500;}
+
+/* ── HERO HEADER ── */
+.header{
+  background:var(--navy-dark);
+  padding:70px 60px 60px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid rgba(201,168,76,0.15);
+}
+.header::before{
+  content:'MARKETING';
+  position:absolute;bottom:-20px;right:-10px;
+  font-family:'Cormorant Garamond',serif;font-size:180px;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.02);pointer-events:none;line-height:1;
+}
+.header-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(201,168,76,0.3);padding:6px 16px;
+  margin-bottom:24px;
+}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+.badge-text{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.header h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,72px);font-weight:300;font-style:italic;
+  color:#fff;line-height:1;margin-bottom:10px;
+}
+.header h1 em{color:var(--gold);font-weight:600;font-style:normal;}
+.header-sub{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;}
+.header-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.hcard{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:20px;text-align:center;transition:background 0.3s;}
+.hcard:hover{background:rgba(201,168,76,0.06);}
+.hcard-n{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);font-weight:300;font-style:italic;line-height:1;}
+.hcard-l{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:5px;}
+
+/* ── NAV TABS ── */
+.tabs{
+  background:#111;
+  padding:0 60px;
+  display:flex;gap:0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  overflow-x:auto;
+}
+.tab{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);padding:18px 24px;
+  cursor:pointer;transition:all 0.3s;border-bottom:2px solid transparent;
+  white-space:nowrap;font-weight:600;
+}
+.tab:hover{color:rgba(255,255,255,0.7);}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* ── SECTIONS ── */
+.section{display:none;padding:60px;animation:fadeIn 0.4s ease;}
+.section.active{display:block;}
+
+/* ── SECTION HEADER ── */
+.sec-label{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.sec-label::before{content:'';width:20px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,46px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:40px;}
+.sec-title strong{font-style:normal;font-weight:600;color:var(--gold);}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-bottom:40px;}
+.card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:32px;transition:all 0.3s;}
+.card:hover{background:rgba(201,168,76,0.05);border-color:rgba(201,168,76,0.2);}
+.card-num{font-family:'Cormorant Garamond',serif;font-size:52px;color:rgba(201,168,76,0.1);font-weight:300;font-style:italic;line-height:1;margin-bottom:16px;}
+.card-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+.card-text{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.9;}
+.card-dark{background:var(--navy-dark);border:1px solid rgba(201,168,76,0.1);padding:28px;transition:all 0.3s;}
+.card-dark:hover{border-color:rgba(201,168,76,0.3);}
+
+/* ── PILLAR STRIP ── */
+.pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-bottom:50px;}
+.pillar{background:var(--navy);padding:36px 24px;text-align:center;transition:background 0.3s;position:relative;overflow:hidden;}
+.pillar:hover{background:#254d8c;}
+.pillar-icon{font-size:28px;margin-bottom:14px;display:block;}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:80px;color:rgba(255,255,255,0.03);position:absolute;top:5px;right:8px;line-height:1;font-weight:300;}
+.pillar-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;}
+.pillar-text{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.7;}
+
+/* ── CALENDAR ── */
+.cal-week{margin-bottom:40px;}
+.cal-week-header{
+  display:flex;align-items:center;gap:16px;
+  background:var(--navy);padding:16px 24px;margin-bottom:2px;
+}
+.cal-week-num{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);font-weight:300;font-style:italic;line-height:1;}
+.cal-week-title{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#fff;font-weight:600;}
+.cal-week-focus{font-size:10px;color:rgba(255,255,255,0.4);font-style:italic;font-family:'Cormorant Garamond',serif;margin-left:auto;}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-day{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);padding:18px 14px;min-height:160px;transition:background 0.2s;}
+.cal-day:hover{background:rgba(201,168,76,0.04);}
+.cal-day-name{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px;}
+.cal-item{margin-bottom:8px;}
+.badge{font-size:7px;padding:2px 7px;border-radius:20px;font-weight:700;letter-spacing:1px;display:inline-block;margin-bottom:3px;}
+.b-post{background:rgba(131,58,180,0.2);color:#c77dff;}
+.b-reel{background:rgba(225,48,108,0.2);color:#ff6b9d;}
+.b-story{background:rgba(240,148,51,0.2);color:#ffc069;}
+.b-li{background:rgba(0,119,181,0.2);color:#74c0fc;}
+.b-task{background:rgba(46,204,113,0.15);color:#69db7c;}
+.cal-content{font-size:10px;color:rgba(255,255,255,0.6);line-height:1.5;display:block;}
+
+/* ── SCHEDULE ── */
+.schedule{margin-bottom:40px;}
+.sched-day{margin-bottom:3px;}
+.sched-header{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  padding:14px 20px;display:flex;align-items:center;gap:16px;cursor:pointer;
+  transition:background 0.3s;
+}
+.sched-header:hover{background:rgba(201,168,76,0.06);}
+.sched-day-name{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;min-width:100px;}
+.sched-preview{font-size:11px;color:rgba(255,255,255,0.3);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.sched-toggle{margin-left:auto;color:var(--gold);font-size:16px;transition:transform 0.3s;}
+.sched-body{display:none;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);border-top:none;}
+.sched-body.open{display:block;}
+.sched-item{display:flex;gap:20px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:flex-start;}
+.sched-item:last-child{border-bottom:none;}
+.sched-time{font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:600;min-width:60px;flex-shrink:0;}
+.sched-platform{font-size:8px;padding:3px 8px;border-radius:20px;flex-shrink:0;}
+.sched-task{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;}
+.sched-tip{font-size:10px;color:rgba(255,255,255,0.3);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:3px;}
+
+/* ── CAPTIONS ── */
+.caption-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:32px;margin-bottom:3px;transition:all 0.3s;}
+.caption-card:hover{border-color:rgba(201,168,76,0.2);}
+.caption-type{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.caption-type::after{content:'';flex:1;height:1px;background:rgba(201,168,76,0.2);}
+.caption-hook{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:14px;}
+.caption-body{font-size:12px;color:rgba(255,255,255,0.5);line-height:2;margin-bottom:16px;}
+.caption-cta{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:1px;}
+.caption-tags{font-size:10px;color:rgba(255,255,255,0.2);margin-top:10px;line-height:1.8;}
+
+/* ── IDEAS LIST ── */
+.ideas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;}
+.idea{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);padding:18px;display:flex;gap:14px;align-items:flex-start;transition:all 0.2s;}
+.idea:hover{background:var(--navy-dark);border-color:rgba(201,168,76,0.2);}
+.idea-num{font-family:'Cormorant Garamond',serif;font-size:28px;color:rgba(201,168,76,0.2);font-weight:300;font-style:italic;line-height:1;flex-shrink:0;min-width:32px;transition:color 0.2s;}
+.idea:hover .idea-num{color:var(--gold);}
+.idea-cat{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:3px;}
+.idea-text{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6;}
+
+/* ── CHECKLIST ── */
+.checklist{list-style:none;}
+.checklist li{
+  font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;align-items:flex-start;gap:12px;
+}
+.checklist li::before{content:'◆';color:var(--gold);font-size:8px;margin-top:6px;flex-shrink:0;}
+
+/* ── HIGHLIGHT SYSTEM ── */
+.hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px;}
+.hl-item{
+  background:var(--navy);border:1px solid rgba(201,168,76,0.1);
+  padding:28px 24px;text-align:center;transition:all 0.3s;
+}
+.hl-item:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-3px);}
+.hl-circle{
+  width:64px;height:64px;border-radius:50%;
+  border:2px solid var(--gold);margin:0 auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+}
+.hl-name{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px;}
+.hl-desc{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;}
+
+/* ── FEED GRID ── */
+.feed-preview{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3px;
+  max-width:360px;
+  margin:0 auto 40px;
+}
+.feed-cell{
+  aspect-ratio:1;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:12px;text-align:center;
+  font-size:9px;letter-spacing:1px;
+  color:rgba(255,255,255,0.3);
+  transition:all 0.3s;
+  cursor:default;
+}
+.feed-cell:hover{background:rgba(201,168,76,0.08);color:rgba(255,255,255,0.7);}
+.feed-cell .feed-icon{font-size:20px;margin-bottom:6px;}
+.feed-cell.gold{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.3);}
+.feed-cell.navy{background:rgba(27,58,107,0.5);border-color:rgba(27,58,107,0.8);}
+
+/* ── REMINDERS ── */
+.reminder-block{margin-bottom:3px;}
+.rem-header{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+  padding:14px 20px;display:flex;align-items:center;gap:14px;
+}
+.rem-time{font-size:14px;font-weight:700;color:var(--gold);min-width:70px;}
+.rem-title{font-size:11px;color:#fff;font-weight:500;}
+.rem-days{font-size:9px;color:rgba(255,255,255,0.3);margin-left:auto;letter-spacing:2px;}
+
+/* ── VOICE TONE ── */
+.tone-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:40px;}
+.tone-do{background:rgba(46,204,113,0.06);border:1px solid rgba(46,204,113,0.15);padding:28px;}
+.tone-dont{background:rgba(231,76,60,0.06);border:1px solid rgba(231,76,60,0.15);padding:28px;}
+.tone-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.tone-do .tone-label{color:#69db7c;}
+.tone-dont .tone-label{color:#ff6b6b;}
+.tone-item{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:10px;}
+.tone-item::before{flex-shrink:0;margin-top:2px;}
+.tone-do .tone-item::before{content:'✓';color:#69db7c;}
+.tone-dont .tone-item::before{content:'✗';color:#ff6b6b;}
+
+/* DIVIDER */
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:40px 0;}
+
+/* ANIMATIONS */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* MOBILE */
+@media(max-width:768px){
+  .header,.section{padding:40px 20px;}
+  .tabs{padding:0 20px;}
+  .tab{padding:14px 14px;font-size:8px;}
+  .header-cards{grid-template-columns:1fr 1fr;}
+  .pillars{grid-template-columns:1fr 1fr;}
+  .cal-days{grid-template-columns:1fr;}
+  .tone-grid{grid-template-columns:1fr;}
+  .feed-preview{max-width:280px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-l">BH Pro Services LLC · Sistema de Marketing</div>
+  <div class="topbar-r">Encargado: Carlos · Inicio: Semana 1</div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">
+    <div class="badge-dot"></div>
+    <div class="badge-text">Sistema Activo — Empezamos Ahora</div>
+  </div>
+  <h1>Marketing <em>BH Pro</em><br>Services</h1>
+  <div class="header-sub">Manual completo para Carlos · 4 semanas · Instagram + LinkedIn</div>
+  <div class="header-cards">
+    <div class="hcard"><div class="hcard-n">4</div><div class="hcard-l">Semanas</div></div>
+    <div class="hcard"><div class="hcard-n">7</div><div class="hcard-l">Posts/Sem</div></div>
+    <div class="hcard"><div class="hcard-n">3</div><div class="hcard-l">Reels/Sem</div></div>
+    <div class="hcard"><div class="hcard-n">∞</div><div class="hcard-l">Stories/día</div></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('intro')">Intro</div>
+  <div class="tab" onclick="showTab('brand')">Brand</div>
+  <div class="tab" onclick="showTab('pillares')">Pilares</div>
+  <div class="tab" onclick="showTab('calendario')">Calendario 4 Sem</div>
+  <div class="tab" onclick="showTab('horarios')">Horarios</div>
+  <div class="tab" onclick="showTab('stories')">Stories</div>
+  <div class="tab" onclick="showTab('feed')">Feed</div>
+  <div class="tab" onclick="showTab('highlights')">Highlights</div>
+  <div class="tab" onclick="showTab('reels')">Reels</div>
+  <div class="tab" onclick="showTab('captions')">Captions</div>
+  <div class="tab" onclick="showTab('ideas')">50 Ideas</div>
+  <div class="tab" onclick="showTab('recordatorios')">Recordatorios</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- INTRO -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section active" id="section-intro">
+  <div class="sec-label">Para Carlos</div>
+  <div class="sec-title">Tu misión como<br><strong>Social Media Manager</strong></div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">¿Qué es BH Pro Services?</div>
+      <div class="card-text">Empresa premium de pintura y mantenimiento de propiedades en South Florida. Clientes: hoteles de lujo, condos, HOAs, property managers. Cliente destacado: Acqualina Resort en Sunny Isles Beach. Servicios: pintura interior/exterior, wallpaper, pintura industrial, reparación de paredes, pressure washing, cabinet painting, mantenimiento general.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">¿Cuál es tu objetivo?</div>
+      <div class="card-text">NO es solo conseguir likes. Es conseguir que property managers, hotel managers y dueños de condos llamen a Brandon. Cada post que publicas debe hacerle pensar a alguien: "necesito a esta gente en mi propiedad." Eso se logra con consistencia, calidad visual y contenido de valor.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Regla #1 — Consistencia</div>
+      <div class="card-text">Publicar 3 veces una semana y desaparecer dos semanas destruye el algoritmo y la confianza. Es mejor publicar menos pero SIEMPRE. Si no tienes contenido nuevo, usa el archivo de fotos y videos anteriores. Nunca dejes pasar más de 2 días sin una story.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">04</div>
+      <div class="card-title">Tono de la marca</div>
+      <div class="card-text">Serio, premium, confiable. Nunca casual ni chistoso en el feed. Las stories pueden ser más naturales. Imagina que el perfil lo ve el gerente de un hotel de 5 estrellas — ¿lo contrataría? Cada post debe responder "sí" a esa pregunta.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sec-label">Accesos que necesitas</div>
+  <div class="sec-title">Antes de <strong>empezar</strong></div>
+  <ul class="checklist">
+    <li>Acceso al Instagram @bhproservices — pídele a Brandon que te agregue como colaborador o admin</li>
+    <li>Acceso al LinkedIn de BH Pro Services — pídele a Brandon que te agregue como page admin</li>
+    <li>Descargar CapCut en tu teléfono — para editar Reels y Stories</li>
+    <li>Tener el logo de BH Pro Services guardado en tu teléfono</li>
+    <li>Crear una carpeta en tu teléfono: "BH Pro Content" — aquí guardas TODO el contenido antes de publicar</li>
+    <li>Pedirle a Brandon fotos y videos de proyectos recientes cada semana</li>
+    <li>Guardar este documento y tenerlo de referencia siempre</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- BRAND -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-brand">
+  <div class="sec-label">Identidad Visual</div>
+  <div class="sec-title">Cómo debe verse<br><strong>BH Pro Services</strong></div>
+
+  <div class="tone-grid">
+    <div class="tone-do">
+      <div class="tone-label">✓ SÍ hacer</div>
+      <div class="tone-item">Fotos brillantes, limpias, bien iluminadas</div>
+      <div class="tone-item">Texto corto y elegante sobre las fotos</div>
+      <div class="tone-item">Colores navy, gold y cream en overlays</div>
+      <div class="tone-item">Captions en inglés para el feed</div>
+      <div class="tone-item">Geotag en cada post (Sunny Isles, Aventura, Hollywood FL)</div>
+      <div class="tone-item">Logo BH en esquina inferior de cada post</div>
+      <div class="tone-item">Música chill/cinematic en Reels</div>
+      <div class="tone-item">Stories casuales pero con música y location tag</div>
+      <div class="tone-item">Responder DMs en menos de 2 horas</div>
+    </div>
+    <div class="tone-dont">
+      <div class="tone-label">✗ NO hacer</div>
+      <div class="tone-item">Fotos oscuras, borrosas o con desorden</div>
+      <div class="tone-item">Emojis excesivos en el feed (solo 1-2 max)</div>
+      <div class="tone-item">Textos largos sin párrafos en captions</div>
+      <div class="tone-item">Publicar sin revisar ortografía</div>
+      <div class="tone-item">Contenido político o personal de Brandon en este perfil</div>
+      <div class="tone-item">Hashtags genéricos como #painting o #work</div>
+      <div class="tone-item">Ignorar comentarios o DMs</div>
+      <div class="tone-item">Subir videos sin música ni texto</div>
+      <div class="tone-item">Publicar sin geotag</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Colores oficiales</div>
+  <div class="sec-title" style="margin-bottom:24px;">Paleta de <strong>marca</strong></div>
+  <div class="cards" style="grid-template-columns:repeat(4,1fr);">
+    <div class="card" style="border-top:4px solid #1B3A6B;"><div class="card-title">Navy</div><div class="card-text">#1B3A6B<br>Color principal. Fondo de overlays, texto de títulos.</div></div>
+    <div class="card" style="border-top:4px solid #C9A84C;"><div class="card-title">Gold</div><div class="card-text">#C9A84C<br>Acento premium. Subtítulos, líneas decorativas, CTAs.</div></div>
+    <div class="card" style="border-top:4px solid #F5F0E8;"><div class="card-title">Cream</div><div class="card-text">#F5F0E8<br>Fondo claro. Fondos de slides y stories informativas.</div></div>
+    <div class="card" style="border-top:4px solid #ffffff;border:1px solid rgba(255,255,255,0.1);border-top:4px solid #fff;"><div class="card-title">White</div><div class="card-text">#FFFFFF<br>Texto sobre fondos oscuros. Nunca puro sobre cream.</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Hashtags</div>
+  <div class="sec-title" style="margin-bottom:24px;">Usar en <strong>cada post</strong></div>
+  <div class="card-dark">
+    <div class="card-title" style="margin-bottom:16px;">Hashtags principales (siempre)</div>
+    <div class="card-text" style="font-size:13px;line-height:2.2;">
+      #BHProServices #SouthFloridaContractor #MiamiPropertyManager #LuxuryPainting #PropertyMaintenance #SunnyIslesBeach #CommercialPainting #HOAMaintenance #LuxuryCondoMiami #FloridaContractor #PremiumPainting #AventuraFL #BrickellMiami #HollywoodFL #SouthFlorida
+    </div>
+    <div class="card-title" style="margin-bottom:12px;margin-top:24px;">Hashtags específicos por tipo de post</div>
+    <div class="card-text">
+      <strong style="color:var(--gold);">Before/After:</strong> #BeforeAndAfter #Transformation #PropertyTransformation<br>
+      <strong style="color:var(--gold);">Wallpaper:</strong> #WallpaperInstallation #LuxuryWallpaper #InteriorDesign<br>
+      <strong style="color:var(--gold);">Industrial:</strong> #IndustrialPainting #CommercialCoating #FacilityMaintenance<br>
+      <strong style="color:var(--gold);">Lime Wash:</strong> #LimeWash #LimeWashWalls #TexturePainting #DecorativePainting
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- PILARES -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-pillares">
+  <div class="sec-label">Estrategia de Contenido</div>
+  <div class="sec-title">Los 5 Pilares de<br><strong>Todo el Contenido</strong></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">Cada cosa que publiques debe caer en uno de estos 5 pilares. Sin excepciones.</p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-num">1</span>
+      <span class="pillar-icon">🏆</span>
+      <div class="pillar-title">Resultados</div>
+      <div class="pillar-text">Before/After, proyectos terminados, transformaciones. Demuestra el nivel del trabajo.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">2</span>
+      <span class="pillar-icon">⚙️</span>
+      <div class="pillar-title">Proceso</div>
+      <div class="pillar-text">Work in progress, técnicas, materiales premium. Educas al cliente sobre por qué cobran lo que cobran.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">3</span>
+      <span class="pillar-icon">👥</span>
+      <div class="pillar-title">Equipo</div>
+      <div class="pillar-text">El equipo trabajando. Humaniza la empresa. Los clientes contratan personas, no logos.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">4</span>
+      <span class="pillar-icon">📚</span>
+      <div class="pillar-title">Educación</div>
+      <div class="pillar-text">Tips, errores comunes, diferencias entre materiales. Posiciona a BH como expertos, no solo ejecutores.</div>
+    </div>
+    <div class="pillar">
+      <span class="pillar-num">5</span>
+      <span class="pillar-icon">🤝</span>
+      <div class="pillar-title">Confianza</div>
+      <div class="pillar-text">Testimonios, proyectos completados, relaciones a largo plazo. Prueba social para convertir seguidores en clientes.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Audiencia objetivo</div>
+  <div class="sec-title">A quién le habla<br><strong>cada post</strong></div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-title">Property Managers</div>
+      <div class="card-text">Su mayor miedo: un contractor que no cumple. Tu contenido debe transmitir puntualidad, comunicación y resultados documentados. Hablarles en LinkedIn también.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Hotel Operations</div>
+      <div class="card-text">Trabajan con ROI. Cada día de habitación cerrada les cuesta. Muestra que BH trabaja en fases sin interrumpir huéspedes.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">HOA Boards</div>
+      <div class="card-text">Deciden en grupo. Necesitan documentación y referencias. El contenido de LinkedIn y casos de estudio son clave para ellos.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Luxury Condo Owners</div>
+      <div class="card-text">Tienen presupuesto y exigen perfección. Los alcanzas con Instagram mostrando resultados impecables en propiedades de su nivel.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CALENDARIO -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-calendario">
+  <div class="sec-label">Plan de 4 Semanas</div>
+  <div class="sec-title">Calendario Completo<br><strong>Semana por Semana</strong></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">Empezamos desde cero. Semana 1 es de establecer la base. Cada semana sube la intensidad.</p>
+
+  <!-- SEMANA 1 -->
+  <div class="cal-week">
+    <div class="cal-week-header">
+      <div class="cal-week-num">S1</div>
+      <div>
+        <div class="cal-week-title">Semana 1 — Establecer Presencia</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Objetivo: activar el perfil, subir las primeras piezas premium, que la gente vea que estamos activos</div>
+      </div>
+      <div class="cal-week-focus">Foco: Before/After + Equipo</div>
+    </div>
+    <div class="cal-days">
+      <div class="cal-day">
+        <div class="cal-day-name">Lunes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Before/After del mejor proyecto reciente. Caption: "This is what we do."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">3 stories: llegada al jobsite AM + trabajo en proceso + resultado del día</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">Caso de estudio corto: proyecto completado con scope y resultado</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Martes</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Timelapse de trabajo en progreso. Música cinematic. Texto: "Watch this."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">2-3 stories del proceso del día. Poll: "¿Cuál acabado prefieres?"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Miércoles</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Foto del equipo trabajando en propiedad de lujo. "The team behind the work."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Material del día + técnica especial + resultado parcial</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Jueves</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Educativo: "3 señales de que tu edificio necesita repintado YA"</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Q&A sticker: "¿Tienes preguntas sobre tu propiedad?"</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">"What property managers get wrong about maintenance contracts"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Viernes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Close-up de detalle de acabado premium. "Precision on every inch."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Viernes en obra + resultado semanal</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Sábado</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Reveal final del proyecto de la semana. Música épica. Before/After.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Resultado + CTA: "DM us for a free quote"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Domingo</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Quote motivacional o tip de la industria. Fondo cream con texto navy.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">"What we're working on this week" — sneak peek de lunes</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div class="cal-week">
+    <div class="cal-week-header">
+      <div class="cal-week-num">S2</div>
+      <div>
+        <div class="cal-week-title">Semana 2 — Técnicas Premium</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Objetivo: mostrar los servicios especiales que nos diferencian — lime wash, wallpaper, acabados industriales</div>
+      </div>
+      <div class="cal-week-focus">Foco: Técnicas + Educación</div>
+    </div>
+    <div class="cal-days">
+      <div class="cal-day">
+        <div class="cal-day-name">Lunes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Lime wash: antes y después. "Not your average paint job."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Morning jobsite + aplicación lime wash en proceso</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Martes</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Close-up hipnótico de aplicación de lime wash. Sin texto. Solo el proceso.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Proceso + materiales que usan para lime wash</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Miércoles</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Wallpaper installation en propiedad de lujo. "Every detail matters."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Carrusel de tipos de wallpaper que instalan + poll favorito</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">"Why luxury properties choose wallpaper over paint for common areas"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Jueves</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Educativo: "Lime wash vs. regular paint — what's the difference?" Con texto en pantalla.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Tip del día sobre pintura + Q&A</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Viernes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Pintura industrial: maquinaria o parking structure. Mostrar versatilidad del equipo.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Proyecto industrial + equipo con EPP puesto</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Sábado</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Day-in-the-life del equipo: 6am a 5pm en un proyecto.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Resultado final + CTA</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Domingo</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Infographic: "8 services. One trusted team." Lista visual de servicios.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Preview de la semana 3</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 -->
+  <div class="cal-week">
+    <div class="cal-week-header">
+      <div class="cal-week-num">S3</div>
+      <div>
+        <div class="cal-week-title">Semana 3 — Confianza y Autoridad</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Objetivo: establecer BH Pro como el contractor más confiable de South Florida. Testimonios, Acqualina, logros.</div>
+      </div>
+      <div class="cal-week-focus">Foco: Testimonios + B2B</div>
+    </div>
+    <div class="cal-days">
+      <div class="cal-day">
+        <div class="cal-day-name">Lunes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Testimonio de cliente + foto del proyecto. "Here's what our clients say."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Referencia a Acqualina Resort sin violar confidencialidad</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">Caso de estudio HOA: scope, timeline, resultado y lección aprendida</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Martes</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">"Things contractors don't want you to know" — educativo viral. Texto en pantalla.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Trabajo en proceso + "Ask us anything" sticker</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Miércoles</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Google Reviews screenshot (5 estrellas). "Don't take our word for it."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Proceso + detalle de acabado + resultado</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Jueves</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">"Why property managers choose BH Pro" — 3 razones con texto animado.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Q&A respondiendo preguntas de property managers</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">"Licensed & Insured — why it matters more than price"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Viernes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Foto del equipo completo con logo. "The team your property deserves."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Presentación individual de un miembro del equipo</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Sábado</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Satisfying finish: close-up de pared perfectamente pintada. Solo música, sin texto.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Resultado final + CTA WhatsApp</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Domingo</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Antes/Después con slider. Caption sobre el proceso completo.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Sneak peek semana 4</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 -->
+  <div class="cal-week">
+    <div class="cal-week-header">
+      <div class="cal-week-num">S4</div>
+      <div>
+        <div class="cal-week-title">Semana 4 — Conversión y Leads</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;">Objetivo: convertir todos los seguidores ganados en las 3 semanas anteriores en clientes reales.</div>
+      </div>
+      <div class="cal-week-focus">Foco: CTAs + Leads</div>
+    </div>
+    <div class="cal-days">
+      <div class="cal-day">
+        <div class="cal-day-name">Lunes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Portfolio: carrusel de los mejores 5 proyectos del mes. "A month of premium work."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Link a bhproservices.com en story + CTA "Free assessment"</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">"Is your property ready for hurricane season? Here's what to check."</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Martes</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">"Before/after reveal" con música dramática. El mejor proyecto del mes.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">DM script: "DM us QUOTE for a free property assessment"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Miércoles</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Servicio destacado: Mantenimiento anual para HOAs. Precio por valor, no por costo.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Countdown: "Free assessments this week only"</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Jueves</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">"Is your building on this list?" — señales de que necesitan mantenimiento urgente.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Poll: "¿Cuándo fue la última vez que repintaron tu edificio?"</span></div>
+        <div class="cal-item"><span class="badge b-li">LINKEDIN</span><span class="cal-content">Outreach post dirigido a property managers de Miami-Dade y Broward</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Viernes</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Testimonio fuerte + foto del proyecto. "Results speak louder than words."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Contact info visible: WhatsApp + website + email</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Sábado</div>
+        <div class="cal-item"><span class="badge b-reel">REEL</span><span class="cal-content">Recap del mes: highlights de los mejores momentos. "Month 1 done. More coming."</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Agradecimiento a seguidores + CTA final</span></div>
+      </div>
+      <div class="cal-day">
+        <div class="cal-day-name">Domingo</div>
+        <div class="cal-item"><span class="badge b-post">POST</span><span class="cal-content">Quote: "Where Craftsmanship Meets Premium Results." Diseño elegante cream/navy.</span></div>
+        <div class="cal-item"><span class="badge b-story">STORY</span><span class="cal-content">Preview del mes 2 — teaser de proyectos nuevos</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HORARIOS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-horarios">
+  <div class="sec-label">Sistema Diario</div>
+  <div class="sec-title">Horarios exactos<br><strong>cada día</strong></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">Estos horarios están optimizados para la audiencia de South Florida. No los cambies sin revisar el analytics primero.</p>
+
+  <div class="schedule">
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Lunes</div>
+        <div class="sched-preview">Post feed + 3 Stories + LinkedIn</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body open">
+        <div class="sched-item"><div class="sched-time">7:00 AM</div><span class="badge b-task">TAREA</span><div><div class="sched-task">Pedir a Brandon fotos/videos del día anterior o del proyecto activo</div></div></div>
+        <div class="sched-item"><div class="sched-time">8:00 AM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Publicar story de "Buenos días desde el jobsite" — foto del equipo llegando</div><div class="sched-tip">Agrega música, location tag y texto corto: "On the job. [Ciudad], FL 🔨"</div></div></div>
+        <div class="sched-item"><div class="sched-time">9:00 AM</div><span class="badge b-post">POST</span><div><div class="sched-task">Publicar el post del feed del lunes (Before/After o proyecto destacado)</div><div class="sched-tip">Caption listo la noche anterior. Revisa ortografía dos veces.</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story de progreso del día — foto o video corto de 10-15 segundos del trabajo en proceso</div></div></div>
+        <div class="sched-item"><div class="sched-time">2:00 PM</div><span class="badge b-li">LINKEDIN</span><div><div class="sched-task">Publicar el post de LinkedIn del lunes (caso de estudio o insight)</div><div class="sched-tip">LinkedIn en inglés, más formal, más largo que Instagram.</div></div></div>
+        <div class="sched-item"><div class="sched-time">6:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story del resultado del día / avance del proyecto</div></div></div>
+        <div class="sched-item"><div class="sched-time">7:00 PM</div><span class="badge b-task">TAREA</span><div><div class="sched-task">Responder todos los DMs y comentarios del día. Tiempo máximo: 30 minutos.</div><div class="sched-tip">Nunca dejes DMs sin responder por más de 24 horas.</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Martes</div>
+        <div class="sched-preview">Reel + 2-3 Stories</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">8:00 AM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story de llegada al jobsite o material del día</div></div></div>
+        <div class="sched-item"><div class="sched-time">10:00 AM</div><span class="badge b-reel">REEL</span><div><div class="sched-task">Publicar el Reel del martes (proceso/timelapse)</div><div class="sched-tip">Los Reels en martes entre 10am-12pm tienen mejor alcance.</div></div></div>
+        <div class="sched-item"><div class="sched-time">1:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story del proceso del día + Poll o Q&A sticker</div></div></div>
+        <div class="sched-item"><div class="sched-time">7:00 PM</div><span class="badge b-task">TAREA</span><div><div class="sched-task">Preparar el caption y contenido del post de mañana (miércoles)</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Miércoles</div>
+        <div class="sched-preview">Post feed + 3 Stories</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">8:00 AM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story del jobsite / detalle de técnica del día</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:00 AM</div><span class="badge b-post">POST</span><div><div class="sched-task">Post del feed del miércoles (detalle de acabado / equipo)</div><div class="sched-tip">Los posts entre 11am-1pm tienen más engagement en Instagram.</div></div></div>
+        <div class="sched-item"><div class="sched-time">3:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Progreso del proyecto + tip o dato interesante</div></div></div>
+        <div class="sched-item"><div class="sched-time">7:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Resultado del día + story interactiva (Poll, Quiz o Slider)</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Jueves</div>
+        <div class="sched-preview">Reel educativo + 2 Stories + LinkedIn</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">8:00 AM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Story de jobsite AM</div></div></div>
+        <div class="sched-item"><div class="sched-time">10:00 AM</div><span class="badge b-reel">REEL</span><div><div class="sched-task">Reel educativo del jueves — tips, errores comunes, diferencias</div><div class="sched-tip">Este tipo de Reel genera saves y shares — muy importante para el algoritmo.</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:00 PM</div><span class="badge b-li">LINKEDIN</span><div><div class="sched-task">Post de LinkedIn del jueves (insight B2B para property managers)</div></div></div>
+        <div class="sched-item"><div class="sched-time">6:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Q&A: responder preguntas de la semana en stories</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Viernes</div>
+        <div class="sched-preview">Post feed + 2 Stories</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">9:00 AM</div><span class="badge b-post">POST</span><div><div class="sched-task">Post del viernes (equipo / proyecto completado / testimonio)</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Viernes en obra — foto o video del equipo trabajando</div></div></div>
+        <div class="sched-item"><div class="sched-time">5:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Resumen de la semana + sneak peek del sábado</div></div></div>
+        <div class="sched-item"><div class="sched-time">7:00 PM</div><span class="badge b-task">TAREA</span><div><div class="sched-task">Editar el Reel del sábado en CapCut si no está listo</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Sábado</div>
+        <div class="sched-preview">Reel reveal + 2 Stories</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">10:00 AM</div><span class="badge b-reel">REEL</span><div><div class="sched-task">Reel del sábado — reveal final / satisfying finish / antes y después</div><div class="sched-tip">Este es el Reel más importante de la semana. Usa la mejor música y el mejor material.</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Resultado del proyecto de la semana</div></div></div>
+        <div class="sched-item"><div class="sched-time">3:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">CTA: "DM us for a free quote" + contacto de WhatsApp</div></div></div>
+      </div>
+    </div>
+
+    <div class="sched-day">
+      <div class="sched-header" onclick="toggleSched(this)">
+        <div class="sched-day-name">Domingo</div>
+        <div class="sched-preview">Post inspiracional + 2 Stories + Prep semana</div>
+        <div class="sched-toggle">▼</div>
+      </div>
+      <div class="sched-body">
+        <div class="sched-item"><div class="sched-time">10:00 AM</div><span class="badge b-post">POST</span><div><div class="sched-task">Post del domingo — quote, tip semanal o infographic de servicios</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">"What we're working on this week" — teaser de lunes</div></div></div>
+        <div class="sched-item"><div class="sched-time">3:00 PM</div><span class="badge b-task">TAREA</span><div><div class="sched-task">Preparar TODO el contenido de la semana siguiente: captions escritos, fotos seleccionadas, Reels editados</div><div class="sched-tip">El domingo es el día de preparación. Llega al lunes con todo listo.</div></div></div>
+        <div class="sched-item"><div class="sched-time">5:00 PM</div><span class="badge b-story">STORY</span><div><div class="sched-task">Contactar a Brandon para confirmar proyectos de la semana y pedir material nuevo</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- STORIES -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-stories">
+  <div class="sec-label">Instagram Stories</div>
+  <div class="sec-title">Sistema de Stories<br><strong>diarias</strong></div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-num">AM</div>
+      <div class="card-title">Buenos días desde el Jobsite</div>
+      <div class="card-text">Foto del equipo llegando. "Day 3 of the Aventura lobby renovation." Música energética desde Instagram. Location tag de la ciudad. Esto muestra que el equipo es puntual y profesional.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">MID</div>
+      <div class="card-title">Progreso del Día</div>
+      <div class="card-text">Foto o video de 10-15 segundos del avance a mediodía. Un detalle de acabado, una sección terminada. El cliente que te sigue ve el proyecto evolucionar — crea engagement orgánico.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">INT</div>
+      <div class="card-title">Interactiva (3x/semana)</div>
+      <div class="card-text">Usa estos stickers rotativamente: Poll ("¿Lime wash o pintura clásica?"), Quiz ("¿Cuántos años dura una pintura exterior en Florida?"), Q&A ("Ask us anything about your property"), Slider ("¿Qué tan impresionante es este acabado?").</div>
+    </div>
+    <div class="card">
+      <div class="card-num">PM</div>
+      <div class="card-title">Resultado del Día</div>
+      <div class="card-text">Foto del trabajo terminado. "Section completed ✓" — el seguidor ve progreso real. Esto es lo que separa los contractors que consiguen repeat business de los que no.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Textos para Stories</div>
+  <div class="sec-title">Ejemplos de <strong>texto rápido</strong></div>
+  <div class="cards">
+    <div class="card-dark">
+      <div class="card-title">Para el AM</div>
+      <div class="card-text">
+        "On the job. [Ciudad], FL 🔨"<br>
+        "Day [número] of the [nombre] project."<br>
+        "Early start. Premium results."<br>
+        "Another day, another luxury property."
+      </div>
+    </div>
+    <div class="card-dark">
+      <div class="card-title">Para el proceso</div>
+      <div class="card-text">
+        "Watch this wall transform."<br>
+        "Precision work. Every detail counts."<br>
+        "This is what [lime wash / wallpaper / exterior] looks like up close."<br>
+        "No shortcuts. Ever."
+      </div>
+    </div>
+    <div class="card-dark">
+      <div class="card-title">Para el resultado</div>
+      <div class="card-text">
+        "Section done ✓"<br>
+        "Day [número] complete."<br>
+        "This is why we do what we do."<br>
+        "Client approved. Always."
+      </div>
+    </div>
+    <div class="card-dark">
+      <div class="card-title">CTAs en stories</div>
+      <div class="card-text">
+        "DM us 'QUOTE' for a free assessment."<br>
+        "Link in bio → bhproservices.com"<br>
+        "WhatsApp us: 954-319-6745"<br>
+        "Send this to your property manager."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- FEED -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-feed">
+  <div class="sec-label">Organización del Feed</div>
+  <div class="sec-title">Feed por columnas<br><strong>temáticas</strong></div>
+
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">El feed de BH Pro está organizado en 3 columnas verticales. Cada columna tiene un solo tipo de contenido — se ve muy premium y organizado. Marcas grandes usan este sistema.</p>
+
+  <!-- COLUMN FEED VISUAL -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;max-width:400px;margin:0 auto 50px;">
+
+    <!-- COL HEADER -->
+    <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);padding:12px;text-align:center;">
+      <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;">Col 1</div>
+      <div style="font-size:20px;margin:6px 0;">🎬</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.5);">Reels</div>
+    </div>
+    <div style="background:rgba(27,58,107,0.3);border:1px solid rgba(27,58,107,0.5);padding:12px;text-align:center;">
+      <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#74c0fc;font-weight:700;">Col 2</div>
+      <div style="font-size:20px;margin:6px 0;">📸</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.5);">Fotos</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:12px;text-align:center;">
+      <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:700;">Col 3</div>
+      <div style="font-size:20px;margin:6px 0;">🖼️</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.5);">Diseños</div>
+    </div>
+
+    <!-- ROW 1 -->
+    <div style="aspect-ratio:1;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">▶</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Before/After reveal</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(27,58,107,0.2);border:1px solid rgba(27,58,107,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">🏆</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Resultado terminado</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">💬</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Quote / Tip</div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div style="aspect-ratio:1;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">▶</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Timelapse proceso</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(27,58,107,0.2);border:1px solid rgba(27,58,107,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">✨</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Detalle de acabado</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">📋</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Infographic servicios</div>
+    </div>
+
+    <!-- ROW 3 -->
+    <div style="aspect-ratio:1;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">▶</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Reel educativo</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(27,58,107,0.2);border:1px solid rgba(27,58,107,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">👥</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Equipo en jobsite</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">⭐</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Testimonio cliente</div>
+    </div>
+
+    <!-- ROW 4 -->
+    <div style="aspect-ratio:1;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">▶</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Satisfying finish</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(27,58,107,0.2);border:1px solid rgba(27,58,107,0.4);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">🏢</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Proyecto hotel/condo</div>
+    </div>
+    <div style="aspect-ratio:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;text-align:center;">
+      <div style="font-size:18px;margin-bottom:4px;">🎨</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.4);">Técnica destacada</div>
+    </div>
+
+  </div>
+
+  <!-- COLUMN RULES -->
+  <div class="cards" style="grid-template-columns:repeat(3,1fr);">
+    <div class="card" style="border-top:3px solid var(--gold);">
+      <div class="card-title">🎬 Columna 1 — Reels</div>
+      <div class="card-text">
+        <strong style="color:var(--gold);">Solo va aquí:</strong><br>
+        — Before/After reveal<br>
+        — Timelapse de proceso<br>
+        — Reel educativo<br>
+        — Satisfying finish<br>
+        — Day-in-the-life<br>
+        — Técnica premium<br><br>
+        <strong style="color:var(--gold);">Regla:</strong> Siempre vertical 9:16. Siempre con música. Siempre con texto o caption visible.
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid #74c0fc;">
+      <div class="card-title">📸 Columna 2 — Fotos</div>
+      <div class="card-text">
+        <strong style="color:#74c0fc;">Solo va aquí:</strong><br>
+        — Resultado terminado<br>
+        — Detalle de acabado close-up<br>
+        — Equipo en jobsite<br>
+        — Proyecto hotel/condo<br>
+        — Before/After en foto<br>
+        — Interior luxury<br><br>
+        <strong style="color:#74c0fc;">Regla:</strong> Fotos reales, bien iluminadas. Mismo preset de edición en todas. Sin filtros exagerados.
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid rgba(255,255,255,0.3);">
+      <div class="card-title">🖼️ Columna 3 — Diseños</div>
+      <div class="card-text">
+        <strong style="color:rgba(255,255,255,0.6);">Solo va aquí:</strong><br>
+        — Quote motivacional<br>
+        — Tip de la industria<br>
+        — Infographic de servicios<br>
+        — Testimonio de cliente<br>
+        — Técnica destacada con texto<br>
+        — Stats o datos del negocio<br><br>
+        <strong style="color:rgba(255,255,255,0.6);">Regla:</strong> Fondo navy o cream. Texto gold o blanco. Creado en Canva. Tipografía elegante.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- REGLA DE PUBLICACIÓN -->
+  <div class="sec-label">La Regla de Oro</div>
+  <div class="sec-title" style="margin-bottom:24px;">Orden de <strong>publicación</strong></div>
+  <div class="card-dark" style="margin-bottom:40px;">
+    <div class="card-title" style="margin-bottom:16px;">Antes de publicar, pregúntate:</div>
+    <div class="card-text" style="font-size:14px;line-height:2.4;">
+      ¿Cuál columna le toca al próximo post?<br>
+      → Si el último post fue un <span style="color:var(--gold);">Reel (Col 1)</span>, el siguiente es una <span style="color:#74c0fc;">Foto (Col 2)</span><br>
+      → Si el último post fue una <span style="color:#74c0fc;">Foto (Col 2)</span>, el siguiente es un <span style="color:rgba(255,255,255,0.6);">Diseño (Col 3)</span><br>
+      → Si el último post fue un <span style="color:rgba(255,255,255,0.6);">Diseño (Col 3)</span>, el siguiente es un <span style="color:var(--gold);">Reel (Col 1)</span><br><br>
+      <strong style="color:#fff;">Siempre: Col 1 → Col 2 → Col 3 → Col 1 → Col 2 → Col 3...</strong>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Edición de fotos</div>
+  <div class="sec-title" style="margin-bottom:24px;">Preset de <strong>edición</strong></div>
+  <div class="cards">
+    <div class="card-dark">
+      <div class="card-title">En Instagram (edición rápida)</div>
+      <div class="card-text">
+        Brillo: +10 a +20<br>
+        Contraste: +5<br>
+        Calidez: +15 a +25<br>
+        Saturación: -5 a 0 (no oversaturar)<br>
+        Sombras: +10 (levantar sombras)<br>
+        Nitidez: +20
+      </div>
+    </div>
+    <div class="card-dark">
+      <div class="card-title">En CapCut (para Reels)</div>
+      <div class="card-text">
+        Filtro: "Film" o "Moody" con intensidad 30-40%<br>
+        Brillo: +10<br>
+        Contraste: +10<br>
+        Temperatura: +10 (más cálido)<br>
+        NO usar filtros muy fuertes — se ve falso<br>
+        Audio: siempre entre 20-30% para no tapar texto
+      </div>
+    </div>
+    <div class="card-dark">
+      <div class="card-title">En Canva (para Diseños Col 3)</div>
+      <div class="card-text">
+        Fondo: Navy #1B3A6B o Cream #F5F0E8<br>
+        Texto principal: Cormorant Garamond o Playfair Display<br>
+        Color de texto: Gold #C9A84C o White #FFFFFF<br>
+        Tamaño: 1080x1080px (cuadrado para feed)<br>
+        Logo BH en esquina inferior derecha, opacidad 40%
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HIGHLIGHTS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-highlights">
+  <div class="sec-label">Instagram Highlights</div>
+  <div class="sec-title">Organización de<br><strong>Highlights</strong></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">Los highlights son el menú de tu perfil. Un property manager que llega por primera vez debe poder ver todo lo que hacen en segundos.</p>
+
+  <div class="hl-grid">
+    <div class="hl-item">
+      <div class="hl-circle">🖌️</div>
+      <div class="hl-name">Process</div>
+      <div class="hl-desc">Videos y fotos del equipo trabajando. Técnicas, preparación de superficies, aplicación.</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-circle">🏆</div>
+      <div class="hl-name">Projects</div>
+      <div class="hl-desc">Los mejores resultados finales. Una story por proyecto con foto del resultado.</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-circle">✨</div>
+      <div class="hl-name">Services</div>
+      <div class="hl-desc">Una story por cada servicio: Interior, Exterior, Wallpaper, Industrial, etc.</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-circle">⭐</div>
+      <div class="hl-name">Reviews</div>
+      <div class="hl-desc">Screenshots de Google Reviews y mensajes de clientes satisfechos.</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-circle">👥</div>
+      <div class="hl-name">Team</div>
+      <div class="hl-desc">El equipo trabajando. Humaniza la empresa y genera confianza.</div>
+    </div>
+    <div class="hl-item">
+      <div class="hl-circle">❓</div>
+      <div class="hl-name">FAQ</div>
+      <div class="hl-desc">Respuestas a las preguntas más frecuentes: áreas de servicio, licencia, etc.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Portadas de Highlights</div>
+  <div class="sec-title" style="margin-bottom:24px;">Cómo crear las <strong>portadas</strong></div>
+  <ul class="checklist">
+    <li>Descarga Canva en tu teléfono — es gratis</li>
+    <li>Crea círculos con fondo navy (#1B3A6B) y ícono o texto gold (#C9A84C) en el centro</li>
+    <li>Tamaño: 1080x1920px — Instagram los recorta al círculo automáticamente</li>
+    <li>Usa íconos simples y líneas del estilo de BH Pro — nada colorido ni genérico</li>
+    <li>Todos los highlights deben tener la misma estética de portada — consistencia</li>
+    <li>Los highlights deben estar en este orden de izquierda a derecha: Process, Projects, Services, Reviews, Team, FAQ</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- REELS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-reels">
+  <div class="sec-label">Estrategia de Reels</div>
+  <div class="sec-title">Reels que generan<br><strong>clientes reales</strong></div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-num">R1</div>
+      <div class="card-title">Timelapse de Proceso</div>
+      <div class="card-text">Graba desde el inicio hasta el resultado. Acelera 4x-8x en CapCut. Música energética. Texto: "Watch this wall transform in 60 seconds." Duración ideal: 15-30 segundos.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">R2</div>
+      <div class="card-title">Before/After Reveal</div>
+      <div class="card-text">Primero el "before" (oscuro, triste, deteriorado), pausa dramática, luego el "after" con música que sube. El momento del corte es el hook. El algoritmo de Instagram premia este formato.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">R3</div>
+      <div class="card-title">Satisfying Finish</div>
+      <div class="card-text">Close-up de rodillo aplicando pintura perfectamente, o de brocha en moldura. Sin palabras. Solo el resultado hipnótico del trabajo bien hecho. Estos generan shares masivos.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">R4</div>
+      <div class="card-title">Educativo con Texto</div>
+      <div class="card-text">"3 errores que cometen los property managers." Texto en pantalla, voz en off o captions automáticos de CapCut. Estos generan saves — muy importante para el algoritmo.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">R5</div>
+      <div class="card-title">Day-in-the-Life</div>
+      <div class="card-text">6am-5pm del equipo. Llegada → trabajo → resultado. Humaniza la empresa y muestra el nivel de dedicación. Texto simple con timestamps. Muy poderoso para generar confianza.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">R6</div>
+      <div class="card-title">Técnica Premium</div>
+      <div class="card-text">Close-up de lime wash, wallpaper installation o faux finish. Muestra expertise que un pintor genérico no tiene. Hook: "Most contractors can't do this." Muy efectivo para leads de lujo.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-label">En CapCut</div>
+  <div class="sec-title" style="margin-bottom:24px;">Cómo editar cada <strong>Reel</strong></div>
+  <ul class="checklist">
+    <li>Importa tus clips en CapCut → selecciona todos los que vayas a usar</li>
+    <li>Corta cada clip a máximo 3-4 segundos — los Reels deben moverse rápido</li>
+    <li>Agrega música desde la librería de CapCut — busca "cinematic", "luxury" o "satisfying"</li>
+    <li>Sube el audio del video original a 0% — solo se escucha la música</li>
+    <li>Agrega texto con la fuente Cormorant o cualquier serif elegante — tamaño grande, pocas palabras</li>
+    <li>Exporta en 1080p o 4K si tu teléfono lo permite</li>
+    <li>Al subir a Instagram: añade caption, hashtags, geotag y selecciona portada con el mejor frame</li>
+    <li>Activa los captions automáticos de Instagram en la configuración del Reel</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- CAPTIONS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-captions">
+  <div class="sec-label">Ejemplos Reales</div>
+  <div class="sec-title">Captions listos para<br><strong>copiar y usar</strong></div>
+
+  <div class="caption-card">
+    <div class="caption-type">Before / After — Hotel o Lobby</div>
+    <div class="caption-hook">This lobby was embarrassing their brand. Now it defines it.</div>
+    <div class="caption-body">When the property manager called us, the walls hadn't been touched in 6 years. Scuffs, faded paint, peeling near the elevators.<br><br>In 4 days — without closing the building — we restored every surface to a finish that matches the luxury standard their residents expect.<br><br>This is why property managers in South Florida keep our number saved.</div>
+    <div class="caption-cta">→ DM us "LOBBY" for a free assessment of your common areas.</div>
+    <div class="caption-tags">#MiamiPropertyManager #LuxuryCondoMiami #CommercialPainting #SouthFloridaContractor #BHProServices</div>
+  </div>
+
+  <div class="caption-card">
+    <div class="caption-type">Educativo</div>
+    <div class="caption-hook">Most buildings repaint too late. Here's the real cost.</div>
+    <div class="caption-body">Waiting until paint is visibly damaged isn't saving money — it's multiplying repair costs.<br><br>✦ Surface prep doubles when paint is severely deteriorated<br>✦ Water infiltration behind failing paint leads to structural damage<br>✦ HOA and hotel brands suffer when common areas look neglected<br><br>A proactive maintenance cycle every 4–5 years costs 60% less than reactive repair.</div>
+    <div class="caption-cta">→ Comment "ASSESS" and we'll tell you where your property stands.</div>
+    <div class="caption-tags">#PropertyManagementTips #HOAMaintenance #BuildingMaintenance #FloridaRealEstate</div>
+  </div>
+
+  <div class="caption-card">
+    <div class="caption-type">Equipo / Confianza</div>
+    <div class="caption-hook">10 years of experience. Zero shortcuts.</div>
+    <div class="caption-body">Our crew has worked on some of the most demanding properties in South Florida — from luxury hotels in Sunny Isles to Class A condos in Aventura and Brickell.<br><br>What keeps clients coming back isn't just the finish quality. It's knowing that we treat their property like it's our own.<br><br>No damage. No mess. No surprises on the final invoice.</div>
+    <div class="caption-cta">→ Link in bio to see our full portfolio of commercial and residential projects.</div>
+    <div class="caption-tags">#BHProServices #SouthFloridaContractor #PremiumPainting #PropertyMaintenance</div>
+  </div>
+
+  <div class="caption-card">
+    <div class="caption-type">Reel — Viral Hook</div>
+    <div class="caption-hook">We turned this space around in 72 hours. Here's how.</div>
+    <div class="caption-body">The client said: "Just patch it up."<br>We said: Let us show you what a real restoration looks like.<br><br>72 hours. 3 coats. Full prep. Zero shortcuts.<br><br>This is the standard every luxury property deserves.</div>
+    <div class="caption-cta">→ Save this post if you manage a property that needs attention. DM us when you're ready.</div>
+    <div class="caption-tags">#PropertyRestoration #BeforeAfter #LuxuryFinishes #MiamiRealEstate</div>
+  </div>
+
+  <div class="caption-card">
+    <div class="caption-type">LinkedIn — B2B</div>
+    <div class="caption-hook">We completed a full corridor restoration for a 24-story building in Aventura. Here's what we learned.</div>
+    <div class="caption-body">Project scope: Full corridor repainting, wall repair, premium wallcovering installation — 24 floors, 180,000 sq ft.<br><br>What made this successful wasn't just the crew. It was the planning: phased work schedule to minimize resident disruption, weekly progress reports to the HOA board, and material specs approved before day one.<br><br>Property managers: this is the level of coordination your projects deserve.</div>
+    <div class="caption-cta">→ If you manage a building due for maintenance, let's schedule a walkthrough this week.</div>
+    <div class="caption-tags">#PropertyManagement #BuildingMaintenance #SouthFlorida #CommercialContractor #HOA</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- IDEAS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-ideas">
+  <div class="sec-label">Banco de Ideas</div>
+  <div class="sec-title">50 Ideas de contenido<br><strong>listas para usar</strong></div>
+
+  <div class="ideas-grid">
+    <div class="idea"><div class="idea-num">01</div><div><span class="idea-cat">Before/After</span><div class="idea-text">Lobby renovation complete reveal</div></div></div>
+    <div class="idea"><div class="idea-num">02</div><div><span class="idea-cat">Before/After</span><div class="idea-text">Apartment unit repaint antes de tenant move-in</div></div></div>
+    <div class="idea"><div class="idea-num">03</div><div><span class="idea-cat">Before/After</span><div class="idea-text">Hotel hallway full restoration</div></div></div>
+    <div class="idea"><div class="idea-num">04</div><div><span class="idea-cat">Before/After</span><div class="idea-text">Exterior de casa antes y después de pressure wash + pintura</div></div></div>
+    <div class="idea"><div class="idea-num">05</div><div><span class="idea-cat">Before/After</span><div class="idea-text">Cabinets de cocina: madera vieja → pintura premium</div></div></div>
+    <div class="idea"><div class="idea-num">06</div><div><span class="idea-cat">Proceso</span><div class="idea-text">Timelapse de lime wash application — close-up hipnótico</div></div></div>
+    <div class="idea"><div class="idea-num">07</div><div><span class="idea-cat">Proceso</span><div class="idea-text">Surface prep — por qué es el paso más importante</div></div></div>
+    <div class="idea"><div class="idea-num">08</div><div><span class="idea-cat">Proceso</span><div class="idea-text">Wallpaper installation paso a paso en propiedad de lujo</div></div></div>
+    <div class="idea"><div class="idea-num">09</div><div><span class="idea-cat">Proceso</span><div class="idea-text">Qué materiales usamos y por qué (Sherwin-Williams)</div></div></div>
+    <div class="idea"><div class="idea-num">10</div><div><span class="idea-cat">Proceso</span><div class="idea-text">Pressure washing antes de cualquier proyecto exterior</div></div></div>
+    <div class="idea"><div class="idea-num">11</div><div><span class="idea-cat">Educativo</span><div class="idea-text">3 señales de que tu edificio necesita repintado urgente</div></div></div>
+    <div class="idea"><div class="idea-num">12</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Diferencia entre pintura interior y exterior de calidad</div></div></div>
+    <div class="idea"><div class="idea-num">13</div><div><span class="idea-cat">Educativo</span><div class="idea-text">¿Qué es lime wash y cuándo usarlo?</div></div></div>
+    <div class="idea"><div class="idea-num">14</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Cómo proteger pintura exterior en Florida (sal, humedad)</div></div></div>
+    <div class="idea"><div class="idea-num">15</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Preguntas que debes hacerle a tu contractor antes de firmar</div></div></div>
+    <div class="idea"><div class="idea-num">16</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Pintura barata vs premium — diferencia real en 5 años</div></div></div>
+    <div class="idea"><div class="idea-num">17</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Cuánto dura un trabajo bien hecho en Florida</div></div></div>
+    <div class="idea"><div class="idea-num">18</div><div><span class="idea-cat">Educativo</span><div class="idea-text">¿Qué cubre un contrato de mantenimiento anual?</div></div></div>
+    <div class="idea"><div class="idea-num">19</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Cómo planificar renovación sin cerrar el edificio</div></div></div>
+    <div class="idea"><div class="idea-num">20</div><div><span class="idea-cat">Educativo</span><div class="idea-text">Hurricane season prep — is your building ready?</div></div></div>
+    <div class="idea"><div class="idea-num">21</div><div><span class="idea-cat">Equipo</span><div class="idea-text">Day-in-the-life de un miembro del equipo</div></div></div>
+    <div class="idea"><div class="idea-num">22</div><div><span class="idea-cat">Equipo</span><div class="idea-text">Presentación del equipo completo BH Pro</div></div></div>
+    <div class="idea"><div class="idea-num">23</div><div><span class="idea-cat">Equipo</span><div class="idea-text">Foto del equipo terminando un proyecto con thumbs up</div></div></div>
+    <div class="idea"><div class="idea-num">24</div><div><span class="idea-cat">Equipo</span><div class="idea-text">Safety first — cómo protegen al equipo y la propiedad</div></div></div>
+    <div class="idea"><div class="idea-num">25</div><div><span class="idea-cat">Equipo</span><div class="idea-text">Camisetas BH Pro en jobsite — branding visible</div></div></div>
+    <div class="idea"><div class="idea-num">26</div><div><span class="idea-cat">Confianza</span><div class="idea-text">Testimonio de property manager (con permiso)</div></div></div>
+    <div class="idea"><div class="idea-num">27</div><div><span class="idea-cat">Confianza</span><div class="idea-text">Screenshot de mensaje positivo de cliente</div></div></div>
+    <div class="idea"><div class="idea-num">28</div><div><span class="idea-cat">Confianza</span><div class="idea-text">"We've worked with this building for 3 years"</div></div></div>
+    <div class="idea"><div class="idea-num">29</div><div><span class="idea-cat">Confianza</span><div class="idea-text">Jobsite limpio y organizado al terminar — "we leave it better"</div></div></div>
+    <div class="idea"><div class="idea-num">30</div><div><span class="idea-cat">Confianza</span><div class="idea-text">Google review de 5 estrellas en formato post elegante</div></div></div>
+    <div class="idea"><div class="idea-num">31</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">Satisfying roller paint application — no words needed</div></div></div>
+    <div class="idea"><div class="idea-num">32</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">"This is what $0 maintenance does to a building in 5 years"</div></div></div>
+    <div class="idea"><div class="idea-num">33</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">Transformation reveal con música dramática</div></div></div>
+    <div class="idea"><div class="idea-num">34</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">"Things contractors don't want you to know"</div></div></div>
+    <div class="idea"><div class="idea-num">35</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">Speed paint — habitación completa en 60 segundos</div></div></div>
+    <div class="idea"><div class="idea-num">36</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">Power washing before — satisfying clean</div></div></div>
+    <div class="idea"><div class="idea-num">37</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">"When the client says 'just a quick touch up'" — humor de industria</div></div></div>
+    <div class="idea"><div class="idea-num">38</div><div><span class="idea-cat">Viral / Reel</span><div class="idea-text">Lime wash reveal — antes de secarse vs después</div></div></div>
+    <div class="idea"><div class="idea-num">39</div><div><span class="idea-cat">LinkedIn</span><div class="idea-text">Caso de estudio: exterior repainting de edificio 20+ pisos</div></div></div>
+    <div class="idea"><div class="idea-num">40</div><div><span class="idea-cat">LinkedIn</span><div class="idea-text">Lección aprendida en proyecto complejo</div></div></div>
+    <div class="idea"><div class="idea-num">41</div><div><span class="idea-cat">LinkedIn</span><div class="idea-text">Cómo estructuramos contratos anuales de mantenimiento</div></div></div>
+    <div class="idea"><div class="idea-num">42</div><div><span class="idea-cat">LinkedIn</span><div class="idea-text">Por qué HOA boards deben presupuestar mantenimiento preventivo</div></div></div>
+    <div class="idea"><div class="idea-num">43</div><div><span class="idea-cat">LinkedIn</span><div class="idea-text">Qué buscar en un contractor para hotel operations</div></div></div>
+    <div class="idea"><div class="idea-num">44</div><div><span class="idea-cat">Seasonal</span><div class="idea-text">"Hurricane season prep — is your building ready?"</div></div></div>
+    <div class="idea"><div class="idea-num">45</div><div><span class="idea-cat">Seasonal</span><div class="idea-text">Post-storm damage assessment y repair</div></div></div>
+    <div class="idea"><div class="idea-num">46</div><div><span class="idea-cat">Seasonal</span><div class="idea-text">"Summer heat and Florida paint — what you need to know"</div></div></div>
+    <div class="idea"><div class="idea-num">47</div><div><span class="idea-cat">Portfolio</span><div class="idea-text">Carrusel: mejores proyectos del mes</div></div></div>
+    <div class="idea"><div class="idea-num">48</div><div><span class="idea-cat">Portfolio</span><div class="idea-text">"This week's highlights" — resumen semanal de proyectos</div></div></div>
+    <div class="idea"><div class="idea-num">49</div><div><span class="idea-cat">Portfolio</span><div class="idea-text">Video tour de proyecto terminado — 60 segundos walk-through</div></div></div>
+    <div class="idea"><div class="idea-num">50</div><div><span class="idea-cat">Portfolio</span><div class="idea-text">Infographic: "8 services. One trusted team." — lista visual de servicios</div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- RECORDATORIOS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="section" id="section-recordatorios">
+  <div class="sec-label">Sistema de Recordatorios</div>
+  <div class="sec-title">Configura estas alarmas<br><strong>en tu teléfono ahora</strong></div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:40px;font-family:'Cormorant Garamond',serif;font-style:italic;">Pon estas alarmas en tu teléfono con el nombre exacto que aparece aquí. Así nunca olvidas qué hacer.</p>
+
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">7:00 AM</div><div class="rem-title">📸 Pedir contenido a Brandon — fotos/videos del día</div><div class="rem-days">L-V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">8:00 AM</div><div class="rem-title">📱 Publicar story AM — jobsite llegada</div><div class="rem-days">L-V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">9:00 AM</div><div class="rem-title">✅ Publicar POST del feed (Lunes, Miércoles, Viernes)</div><div class="rem-days">L, M, V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">10:00 AM</div><div class="rem-title">🎬 Publicar REEL (Martes, Jueves, Sábado)</div><div class="rem-days">Ma, J, S</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">12:00 PM</div><div class="rem-title">📱 Publicar story de proceso — trabajo en progreso</div><div class="rem-days">L-V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">2:00 PM</div><div class="rem-title">💼 Publicar LinkedIn (Lunes y Jueves)</div><div class="rem-days">L, J</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">6:00 PM</div><div class="rem-title">📱 Publicar story del resultado del día</div><div class="rem-days">L-V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">7:00 PM</div><div class="rem-title">💬 Responder DMs y comentarios — máx 30 min</div><div class="rem-days">L-D</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">9:00 PM</div><div class="rem-title">✍️ Preparar caption del día siguiente</div><div class="rem-days">L-V</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">3:00 PM</div><div class="rem-title">📋 Preparar TODO el contenido de la semana siguiente</div><div class="rem-days">Domingo</div></div></div>
+  <div class="reminder-block"><div class="rem-header"><div class="rem-time">5:00 PM</div><div class="rem-title">📞 Llamar a Brandon — confirmar proyectos semana siguiente</div><div class="rem-days">Domingo</div></div></div>
+
+  <div class="divider"></div>
+  <div class="sec-label">Engagement activo</div>
+  <div class="sec-title" style="margin-bottom:24px;">30 minutos al día que<br><strong>cambian el algoritmo</strong></div>
+  <ul class="checklist">
+    <li>Cada día a las 7:30 AM — comentar en 5-10 posts de property managers, HOA companies y real estate developers de Miami. Comentarios genuinos de 10+ palabras, no solo emojis.</li>
+    <li>Seguir cada semana 20-30 cuentas relevantes: @[nombre hotel], @[property management company], @[real estate developer] en South Florida.</li>
+    <li>Responder SIEMPRE a todos los comentarios en los primeros 30 minutos de publicar — esto le dice al algoritmo que el post tiene engagement y lo distribuye más.</li>
+    <li>Usar la función "Colaboración" de Instagram cuando el proyecto es para un cliente que también tiene Instagram — el post aparece en ambos perfiles.</li>
+  </ul>
+
+  <div class="divider"></div>
+  <div class="sec-label">Reporte semanal</div>
+  <div class="sec-title" style="margin-bottom:24px;">Enviar a Brandon cada<br><strong>domingo</strong></div>
+  <div class="card-dark">
+    <div class="card-title" style="margin-bottom:16px;">Template del reporte (copiar en WhatsApp cada domingo)</div>
+    <div class="card-text" style="font-size:13px;line-height:2.2;font-family:'Cormorant Garamond',serif;font-style:italic;">
+      📊 REPORTE SEMANAL BH PRO — Semana [número]<br><br>
+      📈 Seguidores: [número] (+[diferencia])<br>
+      👁️ Alcance total: [número de cuentas alcanzadas]<br>
+      ❤️ Engagement promedio: [likes + comentarios / posts]<br>
+      🎬 Mejor Reel: [cuál y cuántas views]<br>
+      💬 DMs recibidos: [número] — Leads potenciales: [número]<br>
+      ✅ Posts publicados: [número de 7]<br><br>
+      📌 Observaciones: [algo que funcionó bien o mal]<br>
+      📅 Plan semana siguiente: [tema principal]
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('section-' + id).classList.add('active');
+  window.scrollTo({top: document.querySelector('.tabs').offsetTop - 10, behavior:'smooth'});
+}
+
+function toggleSched(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.sched-toggle');
+  body.classList.toggle('open');
+  toggle.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
+}
+</script>
+</body>
+</html>
